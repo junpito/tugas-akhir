@@ -48,6 +48,7 @@
 \usepackage{tabularx,booktabs}
 \usepackage{blindtext}
 
+
 \newif\if@msthesis
 \newif\if@msproposal
 \DeclareOption{skripsi}{\@msthesistrue\@msproposalfalse}
@@ -75,9 +76,9 @@ msthesisfalse\@msproposaltrue}
 \usepackage[bibencoding=auto, backend=biber, style=ieee, language=english, doi=false, isbn=false]{biblatex}
 \DeclareLanguageMapping{english}{bahasa}
 \addbibresource{pustaka/pustaka.bib}
-%\RequirePackage{glossaries}%
+\RequirePackage{glossaries}
 %\renewcommand{\nomname}{\nomenclaturename}%
-%\makeglossary%
+\makeglossary
 %\makenomenclature
 
 %------------------------------------------------------------
