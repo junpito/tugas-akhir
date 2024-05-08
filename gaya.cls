@@ -98,6 +98,7 @@ msthesisfalse\@msproposaltrue}
 
 \setlength
 {\parindent}{0em} %Indent approx 6 character
+\setlength\parskip{1em plus 0.1em minus 0.2em}
 
 %-----------------------------------------------------------------
 

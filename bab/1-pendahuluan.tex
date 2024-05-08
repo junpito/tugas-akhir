@@ -5,36 +5,36 @@
 Upaya pemetaan sel-sel manusia secara komprehensif sedang dilakukan oleh Human Cell Atlas (HCA) dari Chan Zuckerberg Initiative, Human Protein Atlas (HPA) dari Knut and Allice Wallenberg Foundation, dan Human BioMolecular Atlas Program (HuBMAP) dari National Institutes of Health (NIH) \cite{weber_considerations_2020}. Proyek-proyek ambisius ini menggunakan pembuluh darah, termasuk mikrovaskular, sebagai sistem navigasi utama untuk memetakan seluruh sel-sel sehat di seluruh tubuh manusia, termasuk ginjal.
 
 \noindent Meskipun proses pemetaan mikrovaskular secara manual menawarkan presisi tinggi, proses ini memakan waktu lama dan membutuhkan keahlian khusus dalam bidang patologi dan analisis citra medis \cite{hu_multi-scale_2023,weber_considerations_2020}. Hal ini disebabkan oleh kompleksitas struktur mikrovaskular dan kerumitan interpretasi citra mikroskopis. Tantangan ini diperparah dengan ketersediaan data citra mikroskopis ginjal yang sangat besar, yang membutuhkan waktu dan tenaga kerja yang signifikan untuk dianalisis secara manual. Oleh karena itu, penelitian ini bertujuan untuk mengembangkan metode otomatis untuk segmentasi mikrovaskular ginjal dari whole slide image (WSI) menggunakan algoritma deep learning Fully Convolutional Network (FCN). Algoritma FCN terbukti efektif dalam menganalisis citra medis dan mengidentifikasi objek dengan presisi tinggi \cite{huang_fully_2022}. Diharapkan metode ini dapat meningkatkan akurasi dan efisiensi pemetaan mikrovaskular ginjal secara signifikan, sehingga dapat mempercepat penelitian di bidang kesehatan ginjal dan membuka jalan bagi diagnosis dan terapi penyakit ginjal yang lebih presisi. 
-%Berbeda dengan penelitian sebelumnya yang menggunakan metode segmentasi tradisional berbasis morfologi atau thresholding, penelitian ini memanfaatkan kekuatan deep learning untuk mempelajari pola kompleks struktur mikrovaskular ginjal dari WSI. Algoritma FCN akan dilatih dengan menggunakan kumpulan data WSI ginjal yang telah dilabel dengan anotasi mikrovaskular yang akurat. Model FCN yang dihasilkan kemudian akan digunakan untuk segmentasi mikrovaskular secara otomatis pada WSI ginjal baru, menghasilkan peta mikrovaskular yang terperinci dan akurat.
+
+\noindent Penelitian terdahulu telah menunjukkan potensi penggunaan FCN dalam segmentasi citra medis di berbagai area anatomis. Yosefi et al. (2021) meneliti penggunaan FCN modifikasi ("DDAUnet") pada segmentasi tumor esofagus dari data CT, dengan hasil rata-rata DSC 0.79. Penelitian ini menunjukkan potensi FCN dalam segmentasi tumor esofagus \cite{yousefi_esophageal_2021}. Selanjutnya, Chai et al. (2020) menerapkan arsitektur "MA-Unet" yang dimodifikasi pada segmentasi citra tomografi terkomputasi (CT scan) 2D untuk mengidentifikasi struktur paru-paru, mencapai hasil akurasi mIoU 0.96. Penelitian ini menunjukkan efektivitas FCN dalam segmentasi struktur paru-paru \cite{cai_ma-unet_2020}. Selanjutnya, Deng et al. (2023) mengembangkan Omni-Seg, sebuah jaringan dinamis dengan arsitektur "class-aware" yang dilatih secara khusus pada data multi-label dan sebagian berlabel (partially-labeled) untuk segmentasi berbagai struktur patologis ginjal pada WSI. Mereka menyoroti kemampuan Omni-Seg menangani beragam jenis citra, menghasilkan rata-rata Dice similarity co-
+efficien (mean DSC) 87.70 \cite{deng_omni-seg_2022}. Penelitian ini menunjukkan bahwa pendekatan yang fleksibel mungkin efektif untuk masalah segmentasi mikrovaskular ginjal di WSI.
+
+\noindent Meskipun penelitian terdahulu telah menunjukkan potensi FCN dalam segmentasi citra medis berbagai area anatomis, masih terdapat keterbatasan dalam menangani kompleksitas struktur mikrovaskular dan keragaman data WSI. Penelitian ini menggunakan data mikrovaskular dari Human BioMolecular Atlas Program (HubMap) yang dianotasi oleh para ahli di bidang patologi ginjal. Penggunaan data yang telah divalidasi ini diharapkan dapat meningkatkan akurasi dan presisi model dalam segmentasi struktur mikrovaskular ginjal. Dengan demikian, penelitian ini memiliki potensi untuk memberikan kontribusi dalam pemetaan mikrovaskular ginjal dan membuka jalan bagi penelitian yang lebih mendalam tentang fungsi ginjal dan penyakit ginjal. 
 
 \section{Rumusan Masalah}
-\noindent Bagian ini menjadi salah satu bagian penting dalam Pendahuluan. Setelah paparan Latar Belakang \ref{section:latarbelakang}, maka masalah yang diangkat pada pekerjaan penelitian perlu dirumuskan dengan baik. Pertanyaan apa yang akan dijawab dalam penelitian dapat ditulis dalam kalimat tanya ataupun tidak.
-
 \noindent Berdasarkan latar belakang yang telah dijelaskan sebelumnya, berikut merupakan rumusan masalah pada penelitian tugas akhir ini:
 \begin{enumerate}
-    \item Bagaimana curah hujan berhubungan dengan tingkat pendapatan masyarakat?
-    \item Apakah Candi Borobudur dibangun dengan mengikuti kaidah astronomi?
+    \item Apakah FCN dapat digunakan untuk segmentasi mikrovaskular di WSI jaringan ginjal manusia dengan akurasi yang tinggi?
+    \item Bagaimana pengaruh hiperparameter deep learning dalam pelatihan FCN untuk segmentasi mikrovaskular ginjal?
+    \item Jenis FCN mana yang memiliki performa terbaik untuk segmentasi mikrovaskular ginjal?
 \end{enumerate}
 
 \section{Tujuan Penelitian}
-\noindent Eros reprimique vim no. Alii legendos volutpat in sed, sit enim nemore labores no. No odio decore causae has. Vim te falli libris neglegentur, eam in tempor delectus dignissim, nam hinc dictas an.
 
 \noindent Tujuan dari penelitian ini berdasarkan rumusan masalah yang juga menjadi dasar dilakukannya penelitian ini adalah sebagai berikut:
 \begin{enumerate}
-    \item Melihat hubungan curah hujan dengan tingkat pendapatan masyarakat dengan metode blabla?
-    \item Melakukan simulasi langit malam di masa Candi Borobudur dibangun?
+    \item Menganalisis kinerja FCN dalam segmentasi mikrovaskular di WSI jaringan ginjal manusia.
+    \item Mengevaluasi pengaruh hiperparameter deep learning dalam pelatihan FCN untuk segmentasi mikrovaskular ginjal.
+    \item Membandingkan performa jenis FCN untuk segmentasi mikrovaskular ginjal
 \end{enumerate}
 
 \section{Batasan Masalah}
-\noindent Setiap masalah dan penelitian yang diangkat selalu memiliki batasan. Ada batasan, asumsi, atau kriteria yang menjadi pembatas atas masalah yang diangkat dalam penelitian TA, sehingga arah penelitian dapat fokus. Batasan ini perlu dituliskan secara tegas, dan dapat saja memuat lebih dari satu. Contoh batasan masalah misalnya batasan penggunaan data, area, rentang waktu, dan lain-lain.
+\noindent Penelitian ini memiliki batasan masalah yang harus di perhatikan sebagai berikut:
+\begin{enumerate}
+	\item Penelitian ini terbatas pada penerapan FCN pada segmentasi WSI jaringan mikrovaskular manusia menggunakan dataset yang di sediakan dan di anotasi HubMap.
+	\item 
+\end{enumerate}
 
 % Sub bab lain dapat ditambahkan, misalnya:
 %\section{Manfaat Penelitian}
-
-@Article{ID,
-	author = {author},
-	title = {title},
-	journal = {journal},
-	year = {year},
-}
 %\section{Hipotesis}
