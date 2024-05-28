@@ -7,44 +7,26 @@
 \noindent Penelitian ini didasarkan pada beberapa landasan teori yang relevan dengan segmentasi mikrovaskular ginjal menggunakan Fully Convolutional Network (FCN). Landasan teori ini meliputi pemahaman mendalam tentang mikrovaskular ginjal, konsep whole slide image (WSI), prinsip-prinsip deep learning, dan arsitektur FCN.
 
 \subsection{Mikrovaskular Secara Umum}
-\noindent Mikrovaskular merupakan cabang terkecil pembuluh darah yang terdapat dalam jaringan tubuh manusia. Struktur pembuluh darah ini memiliki ukuran kurang dari 100 mikrometer yang terdiri dari arteriol, kapiler dan venula \cite{mescher_junqueiras_2021,pepe_microvascular_2023}. Arteriol merupakan pembuluh darah kecil (diameter 10-100 $\mu$m) dengan ujung yang pada dindingnya terdapat otot halus berperan sebagai sfingter untuk mengatur aliran darah secara berkala ke dalam kapiler dan struktur ini juga bertindak sebagai pengatur tekanan darah. Kapiler merupakan pembuluh darah paling kecil (diameter 4-10 $\mu$m) dalam struktur mikrovaskular yang berfungsi sebagai tempat pertukaran metabolit antara darah dan jaringan \cite{haffner_emerging_2023}. Oksigen dan nutrisi berdifusi dari darah ke jaringan, sementara karbon dioksida dan produk sisa diangkut dari jaringan ke darah. Venula merupakan pembuluh darah kecil (diameter 10-100 $\mu$m) tempat berlanjutnya aliran darah dari kapiler dan membawanya ke vena. Struktur ini juga berperan sebagai tempat keluarnya leukosit (sel darah putih) untuk mengatasi infeksi atau peradangan pada jaringan.
+
+
+\noindent Mikrovaskular, sebagai cabang terkecil dari pembuluh darah, memainkan peran penting dalam berbagai fungsi tubuh manusia. Struktur ini, dengan ukuran kurang dari 100 mikrometer, terdiri dari arteriol, kapiler, dan venula \cite{mescher_junqueiras_2021,pepe_microvascular_2023}. Arteriol merupakan pembuluh darah kecil (diameter 10-100 $\mu$m) dengan ujung yang pada dindingnya terdapat otot halus berperan sebagai sfingter untuk mengatur aliran darah secara berkala ke dalam kapiler dan struktur ini juga bertindak sebagai pengatur tekanan darah. Kapiler merupakan pembuluh darah paling kecil (diameter 4-10 $\mu$m) dalam struktur mikrovaskular yang berfungsi sebagai tempat pertukaran metabolit antara darah dan jaringan \cite{haffner_emerging_2023}. Oksigen dan nutrisi berdifusi dari darah ke jaringan, sementara karbon dioksida dan produk sisa diangkut dari jaringan ke darah. Venula merupakan pembuluh darah kecil (diameter 10-100 $\mu$m) tempat berlanjutnya aliran darah dari kapiler dan membawanya ke vena. Struktur ini juga berperan sebagai tempat keluarnya leukosit (sel darah putih) untuk mengatasi infeksi atau peradangan pada jaringan.
 
 \noindent Secara umum mikrovaskular memiliki peran penting dalam sirkulasi darah dan pertukaran zat diseluruh tubuh \cite{rusanova_role_2022}. Struktur ini membantu setiap sel tubuh manusia menerima oksigen dan nutrisi agar bisa berfunsi secara optimal. Selain itu, struktur ini juga berfungsi sebagai alat untuk membuang sisa metabolisme sehingga tubuh tidak akan keracunan akumulasi zat sisa metabolisme.
 
 \noindent Studi tentang mikrovaskular sangat penting dalam bidang kesehatan dan patologi. penelitian internasional yang sedang berlangsung oleh Chan Zuckerberg Initiative's Human Cell Atlas (HCA), Knut and Allice Wallenberg Foundation's Human Protein Atlas (HPA) dan National Institutes of Health's Human BioMolecular Atlas Program (HuBMAP) yang bernama Common Coordinate Framework (CCF) memanfaatkan mikrovaskular sebagai sistem koordinat dalam tubuh manusia untuk memetakan setiap sel di seluruh tubuh manusia \cite{weber_considerations_2020}. penelitian tersebut dilakukan untuk memahami spesialisasi, interaksi dan organisasi spasial setiap sel dalam tubuh manusia.
 
-\noindent Pemanfaatan mikrovaskular sebagai kordinat pada projek CCF tersebut bisa dilakukan karena pembuluh darah  mengikuti setiap jalur unik di setiap organ sehingga bisa mencermnkan sifat biologis khusus setiap jaringan \cite{weber_considerations_2020}. kemudian, kerumitan struktur mikrovaskular mencerminkan susunan organ dan jaringan yang di laluinya, sehingga bisa disoroti ketergantungan setiap mikrovaskular dan sel pada fungsi yang tepat. 
+\noindent Pemanfaatan mikrovaskular sebagai kordinat pada projek CCF tersebut bisa dilakukan karena pembuluh darah  mengikuti setiap jalur unik di setiap organ sehingga bisa mencermnkan sifat biologis khusus setiap jaringan \cite{weber_considerations_2020}. Kerumitan struktur mikrovaskular mencerminkan kompleksitas organ dan jaringan yang dilaluinya, sehingga dapat menyoroti ketergantungan antara mikrovaskular dan sel dalam menjalankan fungsi yang tepat. 
 
 
 
-\subsection{Mikrovaskular Ginjal}
-\noindent Ginjal adalah organ vital yang bertanggung jawab untuk menyaring darah, mengatur tekanan darah, dan menjaga keseimbangan elektrolit dalam tubuh manusia \cite{ito_s-27-1_2023,bagarao_renal_2023}. %+\citeabdulla_biology_2022
+\subsection{Ginjal dan Mikrovaskular Ginjal}
+
+
+\noindent Ginjal adalah organ vital yang bertanggung jawab untuk menyaring darah, mengatur tekanan darah, dan menjaga keseimbangan elektrolit dalam tubuh manusia \cite{sultan_microvasculature_2023,ito_s-27-1_2023,bagarao_renal_2023}. %+\citeabdulla_biology_2022
  Ginjal melakukan hal tersebut melalui proses-proses seperti filtrasi glomelurus, penyerapan tubulus, dan sekresi tubulus, yang pada akhirnya membentuk urin \cite{auctores_publishing_llc_what_2021}. Selain itu ginjal memainkan peran penting dalam memproduksi hormon seperti eritropioietin, yang meransang produksi darah merah dan renin, yang terlibat dalam pengaturan tekanan darah \cite{scannali_s-22-6_2023}. Kemudian, ginjal membantu mengatur volume cairan tubuh, kandungan elekrolit, dan keasaman, serta membuang produk limbah dan racun dalam tubuh. Secara garis besar, ginjal sangat penting untuk menjaga lingkungan internal tubuh, guna menjamin kondisi yang optimal agar berbagai proses tubuh dapat berfungsi dengan baik.
+ 
 
-\noindent
-
-Eros reprimique vim no. Alii legendos volutpat in sed, sit enim nemore labores no. No odio decore causae has. Vim te falli libris neglegentur, eam in tempor delectus dignissim, nam hinc dictas an. Ne per tota mollis suscipit. Ullum labitur vim ut, ea dicit eleifend dissentias sit. Duis praesent expetenda ne sed. Sit et labitur albucius elaboraret. Ceteros efficiantur mei ad. Hendrerit vulputate democritum est at, quem veniam ne has, mea te malis ignota volumus. Eros reprimique vim no. Alii legendos volutpat in sed, sit enim nemore labores no. No odio decore causae has. Vim te falli libris neglegentur, eam in tempor delectus dignissim, nam hinc dictas an.
-
-Terkadang item ditulis tanpa penomoran, hal ini dilakukan untuk menunjukkan sesuatu yang jumlahnya tidak diketahui secara pasti. Penulisan item yang tidak bernomor contohnya adalah sebagai berikut:
-\begin{itemize}
-    \item Pro omnium incorrupte ea. Elitr eirmod ei qui, ex partem causae disputationi nec. Amet dicant
-    \item No vis, eum modo omnes quaeque ad, antiopam evertitur reprehendunt pro ut.
-    \item Nulla inermis est ne. Choro insolens mel ne, eos labitur nusquam eu, nec deserunt reformidans ut. His etiam copiosae principes te, sit brute atqui definiebas id.
-\end{itemize}
-
-Terkadang item penomoran ingin diubah sesuai format tertentu. Contohnya adalah sebagai berikut:
-\begin{enumerate}[a).]
-    \item Pro omnium incorrupte ea. Elitr eirmod ei qui, ex partem causae disputationi nec. Amet dicant
-    \item No vis, eum modo omnes quaeque ad, antiopam evertitur reprehendunt pro ut.
-    \item Nulla inermis est ne. Choro insolens mel ne, eos labitur nusquam eu, nec deserunt reformidans ut. His etiam copiosae principes te, sit brute atqui definiebas id.
-\end{enumerate}
-
-Terkadang item penomoran ingin diubah sesuai format tertentu. Contohnya adalah sebagai berikut:
-\begin{itemize}
-    \item[!!] Pro omnium incorrupte ea. Elitr eirmod ei qui, ex partem causae disputationi nec. Amet dicant
-    \item[*] No vis, eum modo omnes quaeque ad, antiopam evertitur reprehendunt pro ut.
-    \item[Step 1.] Nulla inermis est ne. Choro insolens mel ne, eos labitur nusquam eu, nec deserunt reformidans ut. His etiam copiosae principes te, sit brute atqui definiebas id.
-\end{itemize}
+\noindent Fungsi-fungsi vital ginjal dilakukan oleh struktur-struktur khusus di dalamnya, terutama pada bagian korteks, medula, dan papila. Masing-masing bagian ini memiliki peran unik dalam proses filtrasi, reabsorpsi dan sekresi yang terjadi di ginjal. korteks merupakan area terluar ginjal yang memiliki sel-sel bulat ginjal yang membungkus glomelurus sebagai alat untuk menyaring darah \cite{gopalan_renal_2022}. Area juga memiliki nefron proximal convoluted tubules (PCT) dan distal convoluted tubules (DTC) yang berperan untuk reabsorsi dan sekresi \cite{mescher_junqueiras_2021}. Diantara struktur tubular tersebut terdapat jaringan kapiler kompleks yang disebut kapiler peritubular.  Medula merupakan area dalam dalam ginjal terdiri dari tubulus-tubulus nefron (lengkung Henle dan duktus kolektivus) dan pembuluh struktur kapiler khusus medula bernama vasa recta yang berperan dalam pengatur konsentrasi urin \cite{haug_multi-omic_2022}. Dalam pengaturan konsentrasi urin medula ginjal, terjadi mekanisme countercurrent multiplication di lengkung Henle dan mekanisme countercurrent exchange di vasa recta \cite{nankivell_importance_2020}. Gradien osmotik yang terjadi akibat mekanisme-mekanisme tersebut memungkinkan ginjal untuk menyaring kembali air dari filtrat glomelurus, sehingga menghasilkan urin yang lebih pekat. Papila merupakan sub bagian dari medula yang merupakan dasar dari piramida ginjal berfungsi sebagai tempat pengumpulan urin sebelum di teruskan ke kaliks minor \cite{sabate_arroyo_relationship_2020}
 
 
 \subsubsection{Menulis Subsubsubbab}
