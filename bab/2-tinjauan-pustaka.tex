@@ -66,16 +66,37 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 \end{figure}
 
 
+\subsection{U-net}
 
-\section{Menulis Persamaan}
-\noindent Persamaan matematis dapat ditulis dalam berbagai bentuk. Beberapa faktor yang mempengaruhi penulisan antara lain: (1) apakah persamaan tadi perlu diberi nomor atau tidak (2) apakah ada persamaan-persamaan tadi dalam sebuah kelompok (3) atau apakah merupakan bentuk penurunan yang perlu disejajarkan (4) selain itu bisa juga persamaan yang ditulis di dalam teks.
-\begin{equation}
-E=mc^2
-\end{equation}
-    dengan $E$ adalah energi, $m$ adalah massa, dan $c$ adalah kecepatan cahaya.
+\noindent Salah satu arstitektur FCN terdiri dari bagian encoder dan decoder yang khusus digunakan dalam tugas segmentasi citra biomedis adalah U-net yang dikenalkan pertama kali oleh Ronneberger et al(2015) \cite{ronneberger_u-net_2015}. Arsitektur ini menjadi cukup populer di kalangan peneliti, terutama bidang analisis citra biomedis, karena kemampuannya untuk memberikan hasil segmentasi yang akurat dengan jumlah data pelatihan yang relatif kecil \cite{williams_unified_2023}.
 
-\begin{equation}
-\sqrt{x^2+1}
-\end{equation}
-    dengan $x$ adalah variabel.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.2]{gambar/U-net.png}
+	\caption{Arsitektur dasar U-net yang digunakan untuk tugas segmentasi citra biomedis}
+	\label{fig:U-net}
+\end{figure}
+
+\noindent U-net memanfaatkan ekstraksi fitur dari jaringan konvolutional, dimana lapisan upsampling dan skip connection digunakan untuk membandingkan fitur dari lapisan atas sambil tetap mempertahankan fitur dari lapisan bawah \cite{huang_fully_2022}. Dengan demikian, model mampu mendeteksi fitur-fitur detail dan umum dari objek, sehingga bisa mendeteksi objek secara akurat \cite{gonze}. U-net dapat disebut sebagai metode klasifikasi tingkat piksel, dimana segmentasi dilakukan melalui klasifikasi piksel per piksel \cite{siddique_u-net_2020}. Struktur arsitektur dari U-net akan dijelaskan secara singkat sebagai berikut ini:
+
+\begin{itemize}
+	\item Bagian pertama dari arsitektur U-net adalah bagian menurun yang dikenal juga sebagai bagian encoder yang berfungsi untuk menangkap informasi kontekstual gambar \cite{azad_medical_2022}. Bagian ini terdiri dari unit-unit blok konvolusi, dimana setiap blok berisi dua operasi konvolusi 3x3 berurutan dan layer pooling yang mirip dengan CNN konvensional, kadang juga menyertakan juga menyertakan layer batch normalization \cite{younisse_fine-tuning_2023}. Sebelum memasuki layer pooling, fitur akan difilter terlebih dahulu melalui fungsi aktivasi ReLu untuk menentukan apakah fitur yang diekstraksi akan ditransfer ke layer selanjutnya.
+	
+	\item Bagian kedua adalah bagian mendaki yang dikenal juga sebagai bagian decoder yang bertujuan untuk secara bertahap meningkatan pemetaan fitur ke resolusi yang diinginkan\cite{siddique_u-net_2020}. Bagian ini terdiri dari layer operasi transpose konvolusi 2x2 (atau deconvolution) yang berfunsi sebagai upsampling untuk mengembalikan dimensi spasial yang hilang selama proses pooling pada bagian encoder. Kemudian, diikuti dua operasi konvolusi 3x3 berurutan untuk memperbaiki fitur yang telah di-upsampling untuk memastikan detail spasial tetap terjaga dan diperbaiki\cite{purushothaman_image_2022}. Fungsi aktivasi ReLu juga digunakan pada bagian ini setelah setiap operasi konvolusi untuk memperkenalkan non-linieritas yang memungkinkan jaringan untuk mempelajari representasi yang lebih komplek dan akurat pada resolusi yang lebih tinggi\cite{huang_fully_2022}.
+	
+	\item Diantara encoder dan decoder terdapat bottleneck yang terdiri dari operasi konvolusi 3x3 berurutan dengan fungsi aktivasi ReLu \cite{azad_medical_2022}. Bagian ini berfungsi untuk menangkap fitur pada resolusi terendah dan menghubungkan informasi dari encoder dan deceoder.
+	
+	\item Skip connection dari encoder ke decoder digunakan juga pada U-net untuk meningkatkan kinerja model pada tugas segmentasi gambar \cite{azad_medical_2022}. Skip connection  merupakan jalur langsung yang menghubungkan layer pada bagian encoder dengan layer pada bagian decoder pada tingkat resolusi yang sama. Dengan penggunaan skip connection memungkinkan model untuk mempertahankan fitur resolusi tinggi dari gambar input yang mungkin hilang selama proses downsampling di encoder. Kemudian, skip connection juga mepertahankan informasi lokasi yang membantu dalam rekontruksi fitur spatial yang lebih akurat\cite{siddique_u-net_2020}.
+	
+	\item Layer Output  pada arsitektur U-net ini merupakan sebuah layer operasi konvolusi 1x1 yang berada di puncak decoder berfungsi untuk menghasilkan prediksi piksel per piksel \cite{huang_fully_2022,azad_medical_2022}. Fungsi aktivasi Softmax sering diterapkan pada layer output untuk menghasilkan distribusi probabilitas setiap kelas pada setiap piksel. 
+	
+	
+\end{itemize}
+
+
+
+\subsection{Modul Attention Gate (AG)}
+
+
+
 
