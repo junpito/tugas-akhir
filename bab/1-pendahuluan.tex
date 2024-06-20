@@ -9,13 +9,13 @@ Upaya pemetaan sel-sel manusia secara komprehensif sedang dilakukan oleh Human C
 \noindent Penelitian terdahulu telah menunjukkan potensi penggunaan FCN dalam segmentasi citra medis di berbagai area anatomis. Yosefi et al. (2021) meneliti penggunaan FCN modifikasi ("DDAUnet") pada segmentasi tumor esofagus dari data CT, dengan hasil rata-rata DSC 0.79. Penelitian ini menunjukkan potensi FCN dalam segmentasi tumor esofagus \cite{yousefi_esophageal_2021}. Selanjutnya, Chai et al. (2020) menerapkan arsitektur "MA-Unet" yang dimodifikasi pada segmentasi citra tomografi terkomputasi (CT scan) 2D untuk mengidentifikasi struktur paru-paru, mencapai hasil akurasi mIoU 0.96. Penelitian ini menunjukkan efektivitas FCN dalam segmentasi struktur paru-paru \cite{cai_ma-unet_2020}. Kemudian, Deng et al. (2023) mengembangkan Omni-Seg, sebuah jaringan dinamis dengan arsitektur "class-aware" yang dilatih secara khusus pada data multi-label dan sebagian berlabel (partially-labeled) untuk segmentasi berbagai struktur patologis ginjal pada WSI. Mereka menyoroti kemampuan Omni-Seg menangani beragam jenis citra, menghasilkan rata-rata Dice similarity co-
 efficien (mean DSC) 87.70 \cite{deng_omni-seg_2022}. Penelitian ini menunjukkan bahwa pendekatan yang fleksibel mungkin efektif untuk masalah segmentasi mikrovaskular ginjal di WSI.
 
-\noindent Penelitian terdahulu telah menunjukkan potensi FCN dalam segmentasi citra medis dari berbagai area anatomi, namun masih terdapat keterbatasan dalam menangani kompleksitas struktur mikrovaskular dan keragaman data WSI. Penelitian ini menggunakan data mikrovaskular dari Human BioMolecular Atlas Program (HubMap) yang telah dianotasi oleh para ahli di bidang patologi ginjal. Penggunaan data yang telah divalidasi ini diharapkan dapat meningkatkan akurasi dan presisi model dalam segmentasi struktur mikrovaskular ginjal. Dengan demikian, penelitian ini memiliki potensi untuk memberikan kontribusi dalam pemetaan mikrovaskular ginjal dan membuka jalan bagi penelitian yang lebih mendalam tentang fungsi ginjal dan penyakit ginjal. 
+\noindent Penelitian terdahulu telah menunjukkan potensi FCN terutama arsitektur U-net dalam segmentasi citra biomedis dari berbagai area anatomi, namun masih terdapat keterbatasan dalam menangani kompleksitas struktur mikrovaskular dan keragaman data WSI. Penelitian ini akan dilakukan evaluasi terhadap Attention U-net yang dilatih menggunakan data mikrovaskular dari Human BioMolecular Atlas Program (HubMap). Data yang akan digunakan telah dianotasi oleh para ahli di bidang patologi ginjal \cite{howard_hubmap_2023}. Penggunaan data yang telah divalidasi ini diharapkan dapat meningkatkan akurasi dan presisi model dalam segmentasi struktur mikrovaskular ginjal. Dengan demikian, penelitian ini memiliki potensi untuk memberikan kontribusi dalam pemetaan mikrovaskular ginjal dan membuka jalan bagi penelitian yang lebih mendalam tentang fungsi ginjal dan penyakit ginjal. 
 
 \section{Rumusan Masalah}
 \noindent Berdasarkan latar belakang yang telah dijelaskan sebelumnya, berikut merupakan rumusan masalah pada penelitian tugas akhir ini:
 \begin{enumerate}
-    \item Apakah FCN dapat digunakan untuk segmentasi mikrovaskular di WSI jaringan ginjal manusia dengan akurasi yang tinggi?
-    \item Bagaimana pengaruh hiperparameter deep learning dalam pelatihan FCN untuk segmentasi mikrovaskular ginjal?
+    \item Apakah FCN terutama arsitektur Attention U-net dapat digunakan untuk segmentasi mikrovaskular di WSI jaringan ginjal manusia dengan akurasi yang tinggi?
+    \item Bagaimana pengaruh pengaruh penambahan modul attention gate pada arsitektur U-net untuk segmentasi mikrovaskular ginjal?
     \item Jenis FCN mana yang memiliki performa terbaik untuk segmentasi mikrovaskular ginjal?
 \end{enumerate}
 
@@ -24,14 +24,16 @@ efficien (mean DSC) 87.70 \cite{deng_omni-seg_2022}. Penelitian ini menunjukkan 
 \noindent Tujuan dari penelitian ini berdasarkan rumusan masalah yang juga menjadi dasar dilakukannya penelitian ini adalah sebagai berikut:
 \begin{enumerate}
     \item Menganalisis kinerja FCN dalam segmentasi mikrovaskular di WSI jaringan ginjal manusia.
-    \item Mengevaluasi pengaruh hiperparameter deep learning dalam pelatihan FCN untuk segmentasi mikrovaskular ginjal.
+    \item Mengevaluasi pengaruh penambahan modul attention gate pada arsitektur U-net untuk segmentasi mikrovaskular ginjal.
     \item Membandingkan performa jenis FCN untuk segmentasi mikrovaskular ginjal.
 \end{enumerate}
 
 \section{Batasan Masalah}
 \noindent Penelitian ini memiliki batasan masalah yang harus di perhatikan sebagai berikut:
 \begin{enumerate}
-	\item Penelitian ini terbatas pada penerapan FCN pada segmentasi WSI jaringan mikrovaskular manusia menggunakan dataset yang di sediakan dan dianotasikan oleh HubMap.
+	\item Penelitian ini terbatas pada penerapan FCN di arsitektur Attention U-net pada segmentasi WSI jaringan mikrovaskular manusia menggunakan dataset yang di sediakan dan dianotasikan oleh HubMap.
+	\item Pelatihan model terbatas pada data yang telah dianotasikan pada data yang telah dirilis HuBMAP.
+	\item Penerapan attention gate terbatas pada skip connection U-net.
 	%\item Pembadingan peforma terbatas pada FCN8s dan U-net dikarenakan terbatasnya waktu dan kurangnya alat komputasi.
 \end{enumerate}
 
