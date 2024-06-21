@@ -1,6 +1,6 @@
 \chapter{METODE PENELITIAN}
 
-\noindent Dalam penelitian ini akan dilakukan implementasi model Attention U-net untuk segmentasi mikrovaskular dalam WSI ginjal manusia sehat.  Penggunaan AG pada U-net dipilih untuk memusatkan perhatian model pada feature yang berpengaruh dari encoder ,sehingga bisa meningkatkan peforma model dalam tugas segmentasi mikrovaskular dalam WSI ginjal manusia sehat. Penelitian ini melibatkan beberapa tahapan mulai dari penginputan data sampai ke evaluasi model. Secara mendetail seluruh proses dari penelitian ini bisa dilihat pada flowchart berikut ini:
+\noindent Dalam penelitian ini akan dilakukan implementasi model Attention U-net untuk segmentasi mikrovaskular dalam WSI ginjal manusia sehat.  Penggunaan \textit{Aattention Gate} (AG) pada U-net dipilih untuk memusatkan perhatian model pada \textit{feature} yang berpengaruh dari \textit{encoder} ,sehingga bisa meningkatkan peforma model dalam tugas segmentasi mikrovaskular dalam WSI ginjal manusia sehat. Penelitian ini melibatkan beberapa tahapan mulai dari penginputan data sampai ke evaluasi model. Secara mendetail seluruh proses dari penelitian ini bisa dilihat pada flowchart berikut ini:
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.6]{gambar/flow-chart.png}
@@ -10,13 +10,13 @@
 
 \section{Dataset Penelitian}
 
-\noindent Dataset yang digunakan pada penelitian ini adalah data yang telah disediakan HuBMAP (Human BioMolecular Atlas Program) di Kaggle: \url{https://www.kaggle.com/competitions/hubmap-organ-segmentation}\cite{hubmap-hacking}.  Data ini berisi citra WSL mikrovaskular ginjal manusia yang telah diwarnai menggunakan metode 2D PAS-stained. 2D PAS-stained mengacu pada citra dua dimensi yang diwarnai menggunakan pewarnaan Periodic Acid-Schiff (PAS). Data ini terdiri dari 7033 citra yang telah diwarnai dengan format TIFF beresolusi 512x512 dimana 1633 telah dianotasikan ke tiga kelas yakni, blood vessels(pembuluh darah), glomelurus dan unsure(dikeragui).  Anotasi dari data tersebut disimpan dalam file json yang merepresentasikan kordinat mask poligon yang sesuai dengan area setiap kelas pada gambar. Dalam penelitian ini hanya data yang telah dianotasikan saja yang akan digunakan untuk melatih model yang akan dikembangkan.
+\noindent Dataset yang digunakan pada penelitian ini adalah data yang telah disediakan \textit{Human BioMolecular Atlas Program }(HuBMAP) di Kaggle: \url{https://www.kaggle.com/competitions/hubmap-organ-segmentation}\cite{hubmap-hacking}.  Data ini berisi citra WSL mikrovaskular ginjal manusia yang telah diwarnai menggunakan metode \textit{2D PAS-stained}. \textit{2D PAS-stained} mengacu pada citra dua dimensi yang diwarnai menggunakan pewarnaan Periodic Acid-Schiff (PAS). Data ini terdiri dari 7033 citra yang telah diwarnai dengan format TIFF beresolusi 512x512 dimana 1633 telah dianotasikan ke tiga kelas yakni, \textit{blood vessels}(pembuluh darah), \textit{glomelurus} dan \textit{unsure}(dikeragui).  Anotasi dari data tersebut disimpan dalam file json yang merepresentasikan kordinat mask poligon yang sesuai dengan area setiap kelas pada gambar. Dalam penelitian ini hanya data yang telah dianotasikan saja yang akan digunakan untuk melatih model yang akan dikembangkan.
 
 
 
 \section{Spesifikasi Perangkat}
 
-\noindent Penelitian ini akan dilakukan di lingkungan komputasi remote menggunakan Kaggle Notebooks. Kaggle menyediakan perangkat keras yang diperlukan dalam penelitian, sehingga peneliti bisa fokus pada eksekusi teori ke dalam kode python tanpa perlu konfigurasi perangkat terlebih dahulu. Spesifikasi sumber daya komputasi yang disediakan Kaggle bisa dilihat pada tabel \ref{tab:cpu_specs}.
+\noindent Penelitian ini akan dilakukan di lingkungan komputasi remote menggunakan \textit{Kaggle Notebooks}. Kaggle menyediakan perangkat keras yang diperlukan dalam penelitian, sehingga peneliti bisa fokus pada eksekusi teori ke dalam kode python tanpa perlu konfigurasi perangkat terlebih dahulu. Spesifikasi sumber daya komputasi yang disediakan Kaggle bisa dilihat pada tabel \ref{tab:cpu_specs}.
 \begin{table}[h]
 	\caption{Spesifikasi CPU pada Lingkungan Komputasi Remote Kaggle Notebook.} % caption pakai titik?
 	\label{tab:cpu_specs}
@@ -30,12 +30,12 @@
 	\end{tabular}
 \end{table}
 
-\noindent Notebook yang menggunakan CPU dan GPU memiliki waktu eksekusi selama 12 jam, sedangkan notebook yang menggunakan TPU memiliki waktu eksekusi selama 9 jam. Tersedia 20 Gigabytes ruang penyimpanan otomatis direktori '/kaggle/working' dan ruang penyimpanan scratchpad tambahan yang tidak akan disimpan diluar sesi saat ini.
+\noindent \textit{Notebook} yang menggunakan \textit{Central Processing Unit }(CPU) dan \textit{Graphics Processing Unit} (GPU) memiliki waktu eksekusi selama 12 jam, sedangkan notebook yang menggunakan \textit{Tensor Processing Unit} (TPU) memiliki waktu eksekusi selama 9 jam. Tersedia 20 \textit{Gigabytes} ruang penyimpanan otomatis direktori '/kaggle/working' dan ruang penyimpanan \textit{scratchpad} tambahan yang tidak akan disimpan diluar sesi saat ini.
 
 
 \section{Preproccessing}
 
-\noindent Preproccessing merupakan langkah penting dalam mempersiapkan dataset agar bisa gunakan dalam pelatihan dan evaluasi model. Langkah-langkah yang biasanya dilakukan dalam preproccessing citra biomedis untuk tugas segmentasi adalah: normalisasi, augmentasi, dan pembagian dataset menjadi data latih dan validasi.
+\noindent \textit{Preproccessing} merupakan langkah penting dalam mempersiapkan dataset agar bisa gunakan dalam pelatihan dan evaluasi model. Langkah-langkah yang biasanya dilakukan dalam \textit{preproccessing} citra biomedis untuk tugas segmentasi adalah: normalisasi, augmentasi, dan pembagian dataset menjadi data latih dan validasi.
 
 \subsubsection{Normalisasi}
 
@@ -50,7 +50,7 @@ Di mana \( x \) adalah nilai piksel asli, \( \min \) adalah nilai minimum dari p
 
 \subsubsection{Pembagian dataset}
 
-\noindent Dalam pengembangan model deep learning pembagian dataset merupakan sebuah langkah yang penting. Dalam langkah ini dataset akan dibagi menjadi set pelatihan (training) dan set validasi (validation). Perlakuan ini akan meningkatkan keakuratan evaluasi pada model dengan memastikan model tidak hanya diuji pada data yang telah dilihat selama pelatihan. Rasio pembagian yang digunakan dalam penelitian ini adalah \(80:20\), dimana 80\% data digunakan sebagai set pelatihan dan 20\% data digunakan sebagai set evaluasi. Pembagian ini akan mengambil data secara acak dari seluruh data yang telah dianotasikan saja. 
+\noindent Dalam pengembangan model deep learning pembagian dataset merupakan sebuah langkah yang penting. Dalam langkah ini dataset akan dibagi menjadi set latih dan set uji. Perlakuan ini akan meningkatkan keakuratan evaluasi pada model dengan memastikan model tidak hanya diuji pada data yang telah dilihat selama pelatihan. Rasio pembagian yang digunakan dalam penelitian ini adalah \(80:20\), dimana 80\% data digunakan sebagai set latih dan 20\% data digunakan sebagai set uji. Pembagian ini akan mengambil data secara acak dari seluruh data yang telah dianotasikan saja. 
 
 \subsubsection{Augmentasi}
 
