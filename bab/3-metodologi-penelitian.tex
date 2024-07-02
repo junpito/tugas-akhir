@@ -10,7 +10,7 @@
 
 \section{Dataset Penelitian}
 
-\noindent Dataset yang digunakan pada penelitian ini adalah data yang telah disediakan \textit{Human BioMolecular Atlas Program }(HuBMAP) di Kaggle: \url{https://www.kaggle.com/competitions/hubmap-organ-segmentation}\cite{hubmap-hacking}.  Data ini berisi citra WSL mikrovaskular ginjal manusia yang telah diwarnai menggunakan metode \textit{2D PAS-stained}. \textit{2D PAS-stained} mengacu pada citra dua dimensi yang diwarnai menggunakan pewarnaan Periodic Acid-Schiff (PAS). Data ini terdiri dari 7033 citra yang telah diwarnai dengan format TIFF beresolusi 512x512 dimana 1633 telah dianotasikan ke tiga kelas yakni, \textit{blood vessels}(pembuluh darah), \textit{glomelurus} dan \textit{unsure}(dikeragui).  Anotasi dari data tersebut disimpan dalam file json yang merepresentasikan kordinat mask poligon yang sesuai dengan area setiap kelas pada gambar. Dalam penelitian ini hanya data yang telah dianotasikan saja yang akan digunakan untuk melatih model yang akan dikembangkan.
+\noindent Dataset yang digunakan pada penelitian ini adalah data yang telah disediakan \textit{Human BioMolecular Atlas Program }(HuBMAP) di Kaggle: \url{https://www.kaggle.com/competitions/hubmap-organ-segmentation}\cite{howard_hubmap_2023}.  Data ini berisi citra WSL mikrovaskular ginjal manusia yang telah diwarnai menggunakan metode \textit{2D PAS-stained}. \textit{2D PAS-stained} mengacu pada citra dua dimensi yang diwarnai menggunakan pewarnaan Periodic Acid-Schiff (PAS). Data ini terdiri dari 7033 citra yang telah diwarnai dengan format TIFF beresolusi 512x512 dimana 1633 telah dianotasikan ke tiga kelas yakni, \textit{blood vessels}(pembuluh darah), \textit{glomelurus} dan \textit{unsure}(dikeragui).  Anotasi dari data tersebut disimpan dalam file json yang merepresentasikan kordinat mask poligon yang sesuai dengan area setiap kelas pada gambar. Dalam penelitian ini hanya data yang telah dianotasikan saja yang akan digunakan untuk melatih model yang akan dikembangkan.
 
 
 
@@ -18,6 +18,7 @@
 
 \noindent Penelitian ini akan dilakukan di lingkungan komputasi remote menggunakan \textit{Kaggle Notebooks}. Kaggle menyediakan perangkat keras yang diperlukan dalam penelitian, sehingga peneliti bisa fokus pada eksekusi teori ke dalam kode python tanpa perlu konfigurasi perangkat terlebih dahulu. Spesifikasi sumber daya komputasi yang disediakan Kaggle bisa dilihat pada tabel \ref{tab:cpu_specs}.
 \begin{table}[h]
+	\centering
 	\caption{Spesifikasi CPU pada Lingkungan Komputasi Remote Kaggle Notebook.} % caption pakai titik?
 	\label{tab:cpu_specs}
 	\begin{tabular}{lllll}

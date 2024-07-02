@@ -107,7 +107,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 
 \subsection{U-net}
 
-\noindent Salah satu arstitektur FCN terdiri dari bagian \textit{encoder-decoder}, khusus digunakan dalam tugas segmentasi citra biomedis adalah U-net yang dikenalkan pertama kali oleh Ronneberger et al.(2015) \cite{ronneberger_u-net_2015}. Arsitektur ini menjadi cukup populer di kalangan peneliti, terutama bidang analisis citra biomedis, karena kemampuannya untuk memberikan hasil segmentasi yang akurat dengan jumlah data pelatihan yang relatif kecil \cite{williams_unified_2023}.
+\noindent Salah satu arstitektur FCN yang terdiri dari bagian \textit{encoder-decoder}, khusus digunakan dalam tugas segmentasi citra biomedis adalah U-net yang dikenalkan pertama kali oleh Ronneberger et al.(2015) \cite{ronneberger_u-net_2015}. Arsitektur ini menjadi cukup populer di kalangan peneliti, terutama bidang analisis citra biomedis, karena kemampuannya untuk memberikan hasil segmentasi yang akurat dengan jumlah data pelatihan yang relatif kecil \cite{williams_unified_2023}.
 
 \begin{figure}[H]
 	\centering
@@ -127,7 +127,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 	
 	\item \textit{Skip connection} dari \textit{encoder} ke \textit{decoder} digunakan juga pada U-net untuk meningkatkan kinerja model pada tugas segmentasi gambar \cite{azad_medical_2022}. \textit{Skip connection}  merupakan jalur langsung yang menghubungkan layer pada bagian \textit{encoder} dengan layer pada bagian \textit{decoder} pada tingkat resolusi yang sama. Dengan penggunaan \textit{skip connection} memungkinkan model untuk mempertahankan fitur resolusi tinggi dari gambar input yang mungkin hilang selama proses \textit{downsampling} di \textit{encoder}. Kemudian,\textit{ skip connection} juga mepertahankan informasi lokasi yang membantu dalam rekontruksi fitur yang lebih akurat\cite{siddique_u-net_2020}.
 	
-	\item \textit{Output layers}  pada arsitektur U-net ini merupakan sebuah \textit{convolutional layer} 1x1 yang berada di puncak decoder berfungsi untuk menghasilkan prediksi piksel per piksel \cite{huang_fully_2022,azad_medical_2022}. Fungsi aktivasi Softmax sering diterapkan pada layer output untuk menghasilkan distribusi probabilitas setiap kelas pada setiap piksel. 
+	\item \textit{Output layers}  pada arsitektur U-net ini merupakan sebuah \textit{convolutional layer} 1x1 yang berada di puncak decoder berfungsi untuk menghasilkan prediksi piksel per piksel \cite{huang_fully_2022,azad_medical_2022}. Fungsi aktivasi Softmax sering diterapkan pada layer output untuk menghasilkan distribusi probabilitas setiap kelas pada setiap piksel. Namun, untuk data yang terdiri dari dua kelas lebih umum digunakan fungsi aktivasi sigmoid.
 	
 	
 \end{itemize}
@@ -159,22 +159,75 @@ Diagram pada gambar \ref{fig:AG} menunjukkan skema kerja AG dalam Attention U-ne
 
 
 
+\subsection{Konvolusi, Pooling dan Dekonvolusi}
+
+\noindent Konvolusi, pooling dan dekonvolusi merupakan lapisan operasi yang digunakan bersama-sama dalam \textit{deep learning}, termasuk U-net \cite{goodfellow_deep_2016,pajankar_convolutional_2022,bishop_deep_2024}.  Lapisan konvolusi bertindak sebagai pengekstraksi fitur, lapisan pooling berfungsi untuk mengurangi dimensi peta fitur, sedangkan dekonvolusi berfungsi untuk meningkatkan dimensi di bagian \textit{encode}r. 
+
+\subsubsection{Konvolusi}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.6]{gambar/convolusi.png}
+	\caption{Contoh operasi konvolusi}
+	\label{fig:convolusi}
+\end{figure}
+
+\noindent adalah operasi matematika dimana sebuah kernel (atau filter) digeserkan pada bagian gambar input untuk memproduksi \textit{feature map} (peta fitur) \cite{pajankar_convolutional_2022}.  Pada gambar menunjukkan kernel yang berbeda akan menghasilkan peta fitur yang berbeda juga. Dalam library \textit{deep learning} operasi  konvolusi yang digunakan disebut \textit{cross-corrlelation}\cite{goodfellow_deep_2016}. Dengan formula sebagai berikut:
+
+\begin{equation}
+	C(i, j) = (I * K)(i, j) = \sum_{m} \sum_{n} I(i - m, j - n) K(m, n)
+\end{equation}
+
+Dimana \((C(i,j))\) adalah hasil konvolusi pada posisi \((i,j)\). \((I(i-m, j-n))\) adalah nilai piksel citra masukan pada posisi \((i-m, j-n)\). \((K(m,n))\) adalah nilai pada filter di posisi \((m,n)\).
+
+\subsubsection{Pooling}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.4]{gambar/pooling.png}
+	\caption{Contoh pooling terhadap peta fitur}
+	\label{fig:pooling}
+\end{figure}
+
+\noindent fungsi pooling merupakan sebuah fungsi untuk mengubah \textit{output} jaringan di lokasi tertentu menjadi ringkasan statistik dari \textit{output} terdekat\cite{goodfellow_deep_2016,bishop_deep_2024}. Fungsi ini berguna untuk melakukan down-sampling pada peta fitur, yang berarti mengurangi dimensi peta fitur sambil tetap mempertahankan informasi penting. \textit{Down-sampling} ini mengenalkan \textit{invariance} pada jaringan \cite{goodfellow_deep_2016}. Sehingga jaringan bisa melihat fitur mana yang lebih sering muncul, tanpa tergantung pada lokasi aslinya.
+
+\noindent Jenis pooling yang sering digunakan dalam deep learning meliputi \textit{max pooling}, yang mengambil nilai maksimum dari area yang dipilih \cite{bishop_deep_2024}. Kemudian ada \textit{average pooling} yang mengambil rata-rata dari nilai-nilai di area tersebut \cite{bishop_deep_2024}. Dalam arsitektur U-net, \textit{max pooling} digunakan karena efektif dalam mempertahankan fitur-fitur dominan yang penting untuk segmentasi.
+
+\subsubsection{Dekonvousi}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.4]{gambar/deconv.png}
+	\caption{Contoh dekonvolusi dari peta fitur}
+	\label{fig:deconv}
+\end{figure}
+
+
+\noindent Dekonvolusi atau \textit{transpose convolution} merupakan fungsi yang digunakan untuk meningkatkan dimensi peta fitur \cite{goodfellow_deep_2016,bishop_deep_2024}. Pada arsitektur U-net operasi ini digunakan pada bagian \textit{up-sampling} untuk mengembalikan ukuran peta fitur yang telah melalui bagian \textit{down-sampling} \cite{azad_medical_2022}. Cara kerja operasi ini adalah dengan menerapkan filter di seluruh peta fitur. Secara matematis proses dekonvolusi dapat dirumuskan sebagai berikut:
+
+\begin{equation}
+	I(i,j) = (C * K^T)(i,j) = \sum_{m} \sum_{n} C(m, n) K(i - m, j - n)
+\end{equation}
+
+\noindent Dimana \(I(i,j)\) adalah nilai pada posisi \((i,j)\) dari hasil transpose convolution. \(C(m,n)\) adalah nilai pada posisi \((m,n)\) dari input. \(K(i-m, j-n)\) adalah nilai pada posisi \((i-m, j-n)\) dari kernel/filter yang diterapkan terbalik.
+
+
 
 \subsection{Augmentasi Data}
 
-\noindent Teknik augmentasi data merupakan salah satu metode yang umum digunakan untuk meningkatkan peforma model deep learning \cite{minaee_image_2020}. Augmentasi data memungkinkan \textit{machine} untuk megenerasi data seperti orisinal, namun berbeda dalam padangan model yang digunakan dalam pelatihan \cite{huang_fully_2020}. Data augmentasi bisa meningkatkan variasi dari data dan mengurangi gap antara data latih dan uji untuk meningkatkan ketahanan model.
+\noindent Teknik augmentasi data merupakan salah satu metode yang umum digunakan untuk meningkatkan peforma model deep learning \cite{minaee_image_2020}. Augmentasi data memungkinkan \textit{machine} untuk megenerasi data seperti orisinal, namun berbeda dalam padangan model yang digunakan dalam pelatihan \cite{huang_fully_2022}. Data augmentasi bisa meningkatkan variasi dari data dan mengurangi gap antara data latih dan uji untuk meningkatkan ketahanan model.
 
 \noindent Dalam pencitraan biomedis augmentasi sering digunakan dalam tugas segmentasi karena ketidakseimbangan antar kelas dalam tugas segmentasi. Oleh karena itu, lebih baik mempertahankan gambar asli fitur untuk konvergensi model. Dalam penerapannya augmentasi biasanya berupa transformasi gemoetris acak (rotation, scaling, shear dan flipping) dan modifikasi intensitas acak (normalization, blurring dan penyesuaian contrast)\cite{minaee_image_2020}.
 
 
 \subsection{Fungsi Aktivasi}
 
-\noindent Fungsi aktivasi digunakan dalam \textit{deep learning} untuk memperkenalkan non-linieritas kepada sebuah jaringan, memungkinkan jaringan mengenali kompleksitas dari sebuah data \cite{younisse_fine-tuning_2023}. Tanpa adanya fungsi aktivasi, jaringan hanya akan menjadi representasi linier dari seluruh data yang dilatih \cite{chiang_activation_2023}. Selain itu, juga akan menyebabkan masalah seperti \textit{vanishing gradient} (gradien yang hilang) atau \textit{exploding gradient} (gradien yang meledak), yang akan menghambat proses pembelajaran jaringan. 
+\noindent Fungsi aktivasi digunakan dalam \textit{deep learning} untuk memperkenalkan non-linieritas kepada sebuah jaringan, memungkinkan jaringan mengenali kompleksitas dari sebuah data \cite{younisse_fine-tuning_2023,heaton_ian_2018}. Tanpa adanya fungsi aktivasi, jaringan hanya akan menjadi representasi linier dari seluruh data yang dilatih \cite{chiang_activation_2023}. Selain itu, juga akan menyebabkan masalah seperti \textit{vanishing gradient} (gradien yang hilang) atau \textit{exploding gradient} (gradien yang meledak), yang akan menghambat proses pembelajaran jaringan. 
 
-\noindent Salah dua fungsi aktivasi yang sering digunakan dalam arsitektur jaringan U-net adalah \textit{Rectified Linier Unit} (ReLU) dan \textit{sigmoid}. Penjelasan singkat dari keduanya adalah sebagai berikut ini:
+\noindent Salah dua fungsi aktivasi yang sering digunakan dalam arsitektur jaringan U-net adalah \textit{Rectified Linier Unit} (ReLU) dan \textit{sigmoid}. %Penjelasan singkat dari keduanya adalah sebagai berikut ini:
 
 \subsubsection{ReLU:}
-Merupakan singkatan dari \textit{rectified linier unit}. Cara kerja dari fungsi aktivasi ini cukup sederhana, jika input (x) adalah positif maka outputnya adalah nilai itu sendiri \cite{younisse_fine-tuning_2023}. Jika inpuntya negatif atau nol maka outputnya adalah nol. secara matematis fungsi ReLU adalah sebagai berikut ini: 
+Merupakan singkatan dari \textit{rectified linier unit}. Cara kerja dari fungsi aktivasi ini cukup sederhana, jika input (x) adalah positif maka outputnya adalah nilai itu sendiri \cite{younisse_fine-tuning_2023}. Jika inpuntya negatif atau nol maka outputnya adalah nol. Dengan kata lain, fungsi aktivasi ReLU mengaktifkan neuron dengan input positif dan menonaktifkan selainnya. secara matematis fungsi ReLU adalah sebagai berikut ini: 
 
 \begin{equation}
 	\sigma(x) = \max(0, x)
@@ -189,7 +242,11 @@ Merupakan fungsi aktivasi yang memetakan setiap nilai input (x) ke rentang konti
 	\sigma(x) = \frac{1}{1 + e^{-x}}
 \end{equation}
 
-Dimana \(x\) adalah input dari fungsi. \(e\) adalah bilangan Euler (bernilai 2.71828)
+Dimana \(x\) adalah input dari fungsi. \(e\) adalah bilangan \textit{Euler} (bernilai 2.71828)
+
+
+
+
 
 
 \subsection{Metriks Evaluasi}
