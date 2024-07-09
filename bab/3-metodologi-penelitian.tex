@@ -38,7 +38,7 @@
 
 \noindent \textit{Preproccessing} merupakan langkah penting dalam mempersiapkan dataset agar bisa gunakan dalam pelatihan dan evaluasi model. Langkah-langkah yang biasanya dilakukan dalam \textit{preproccessing} citra biomedis untuk tugas segmentasi adalah: normalisasi, augmentasi, dan pembagian dataset menjadi data latih dan validasi.
 
-\subsubsection{Normalisasi}
+\subsection{Normalisasi}
 
 \noindent Dalam tahap ini, intensitas piksel dari gambar yang biasanya dalam rentang 0 hingga 225 akan di ubah menjadi rentang lebih kecil seperti 0 dan 1. Proses ini bisa mempercepat proses konvergensi model dan meningkatkan akurasi model. Berikut adalah formula untuk normalisasi intensitas piksel dalam gambar:
 
@@ -46,19 +46,26 @@
 	x' = \frac{x - \min}{\max - \min}
 \end{equation}
 
-Di mana \( x \) adalah nilai piksel asli, \( \min \) adalah nilai minimum dari piksel, dan \(\max\) adalah nilai maksimum dari piksel.
+\noindent
+keterangan:
+\begin{itemize}
+	\item $x$ : nilai piksel asli
+	\item $\min$ : nilai minimum dari piksel
+	\item $\max$ : nilai maksimum dari piksel
+\end{itemize}
 
 
-\subsubsection{Pembagian dataset}
+\subsection{Pembagian dataset}
 
 \noindent Dalam pengembangan model deep learning pembagian dataset merupakan sebuah langkah yang penting. Dalam langkah ini dataset akan dibagi menjadi set latih dan set uji. Perlakuan ini akan meningkatkan keakuratan evaluasi pada model dengan memastikan model tidak hanya diuji pada data yang telah dilihat selama pelatihan. Rasio pembagian yang digunakan dalam penelitian ini adalah \(80:20\), dimana 80\% data digunakan sebagai set latih dan 20\% data digunakan sebagai set uji. Pembagian ini akan mengambil data secara acak dari seluruh data yang telah dianotasikan saja. 
 
-\subsubsection{Augmentasi}
+\subsection{Augmentasi}
 
 \noindent Proses ini merupakan teknik untuk megenerasi  data yang mirip dengan data original namun berbeda pada pandangan model. Pada penelitian ini akan dilakukan augmentasi berupa transformasi geometri secara acak seperti: rotation (rotasi), scaling(skala), shear(geser) dan flipping(membalikkan).
 
 
-\subsection{Eksperimen dan evaluasi}
+
+\section{Eksperimen dan evaluasi}
 
 \noindent Dalam tahapan ini akan dilakukan serangkaian eksperimen untuk menjawab pertanyaan permasalahan yang telah dirumuskan. Eksperimen ini dirancang untuk mengevaluasi kinerja model Attention U-net yang diimplementasikan untuk segmentasi mikrovaskular dalam citra WSI ginjal manusia sehat. Berikut adalah berberapa eksperiment yang akan dilakukan dalam penelitian ini:
 

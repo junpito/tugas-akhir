@@ -3,14 +3,14 @@
 %\chapter{DASAR TEORI}
 
 
-\section{Landasan Teori}
-\noindent Penelitian ini didasarkan pada beberapa landasan teori yang relevan dengan segmentasi mikrovaskular ginjal menggunakan model \textit{Fully Convolutional Network} (FCN) arsitektur Attention U-net. Landasan teori ini meliputi pemahaman mendalam tentang mikrovaskular ginjal, konsep \textit{whole slide image} (WSI), prinsip-prinsip \textit{deep learning}, arsitektur U-net dan \textit{Attention Gate} (AG).
+%\section{Landasan Teori}
+%\noindent Penelitian ini didasarkan pada beberapa landasan teori yang relevan dengan segmentasi mikrovaskular ginjal menggunakan model \textit{Fully Convolutional Network} (FCN) arsitektur Attention U-net. Landasan teori ini meliputi pemahaman mendalam tentang mikrovaskular ginjal, konsep \textit{whole slide image} (WSI), prinsip-prinsip \textit{deep learning}, arsitektur U-net dan \textit{Attention Gate} (AG).
 
-\subsection{Mikrovaskular Secara Umum}
+\section{Mikrovaskular Secara Umum}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=1]{gambar/mikrovaskular.jpg}
+	\includegraphics[scale=0.9]{gambar/mikrovaskular.jpg}
 	\caption{ Struktur Mikrovaskular \cite{guven_microcirculation_2020}}
 	\label{fig:mikrovaskular}
 \end{figure}
@@ -25,7 +25,7 @@
 
 
 
-\subsection{Ginjal dan Mikrovaskular Ginjal}
+\section{Ginjal dan Mikrovaskular Ginjal}
 
 
 \noindent Ginjal adalah organ vital yang bertanggung jawab untuk menyaring darah, mengatur tekanan darah, dan menjaga keseimbangan elektrolit dalam tubuh manusia \cite{sultan_microvasculature_2023,ito_s-27-1_2023,bagarao_renal_2023}. %+\citeabdulla_biology_2022
@@ -37,7 +37,7 @@
 \noindent Mikrovaskular ginjal memiliki beberapa komponen unik yang berperan penting dalam proses pembentukan urin dan pengaturan fungsi ginjal, mencakup glomelurus, kapiler peritubular, vasa recta, arteriol aferen dan arteriol eferen \cite{mescher_junqueiras_2021}. Glomelurus merupakan kumpulan kapiler yang terdapat di kapsul Bowman yang berfungsi sebagai alat penyaring darah sehingga air dan limbah bisa melewati dinding kapiler ke dalam kapsul Bowman, sementara sel darah dan protein besar tetap berada di dalam aliran darah \cite{luxen_unique_2023}. kapiler peritubular merupakan kapiler yang mengelilingi tubulus ginjal yang berperan mereabsorsi cairan penting yang tidak tersaring di dalam glomelurus \cite{savedchuk_targeting_2023}. Vasa recta merupakan kapiler yang terletak di medula ginjal, mengelilingi  lengkung henle yang berfungsi menjaga gradien osmotik untuk proses reabsorsi air dari duktus kolektivus \cite{goligorsky_emerging_2022}. Arteriol aferen dan eferen merupakan arteriol  yang berfungsi dalam transportasi darah dari dan ke glomlurus \cite{ergin_kidney_2021}.
 
 
-\subsection{Whole Slides Image (WSI)}
+\section{Whole Slides Image (WSI)}
 
 \begin{figure}[H]
 	\centering
@@ -69,14 +69,14 @@
 
 
  
-\subsection{Segmentasi Gambar}
+\section{Segmentasi Gambar}
 
 \noindent Segementasi gambar merupakan sebuah tugas penting dalam anilisis gambar histologis dan medis. Proses ini akan mempartisi gambar digital menjadi wilayah yang terpisah (tidak tumpang tindih), yang masing-masing wilayah  berhubungan dengan suatu objek atau struktur yang relevan dalam lingkup pengamatan \cite{wu_image_2023}. Dengan kata lain, segmentasi gambar merupakan proses mengelompokkan piksel-piksel dalam gambar berdasarkan karakteristik tertentu. Hasil dari segmentasi gambar adalah sekumpulan segmen yang mewakili objek dari objek yang berbeda dalam gambar. Metode yang di gunakan dalam proses ini sangat bervariasi, dari yang metode sederhana seperti: \textit{treshholding} memisahkan piksel berdasarkan intensitasnya, \textit{region growing} mengelompokkan piksel-piksel berdasarkan kemiripan, \textit{clustering} memisahkan piksel berdasarkan kemiripan dalam fitur multidimensi dan \textit{aktive countour} menggunakan kurva yang dapat berubah untuk mendeteksi objek, hingga metode \textit{deep learning} seperti model FCN yang lebih canggih \cite{huang_fully_2022,wang_comprehensive_2022}.
 
 \noindent Dalam praktiknya segmentasi gambar menggunakan \textit{deep learning} terbagi ke dalam dua jenis: segmentasi semantik dan segmentasi instance. Segmentasi semantik merupakan jenis segmentasi untuk mencari pemahan rinci terhadap berbagai wilayah dalam gambar yang mana pada jenis ini pelabelan setiap piksel dalam gambar didasarkan setiap kelas objek \cite{fan_image_2023}. Di sisi lain, segmentasi instace melabeli piksel objek dalam gambar tidak hanya didasarkan setiap kelas dari objek tetapi, juga membedakan antara instance objek  secara individu walaupun ada dalam kelas yang sama sehingga memungkinkan untuk penggambaran yang tepat dari setiap objek yang ada dalam gambar. Kedua jenis segmentasi ini telah dimanfaatkan dalam berbagai bidang seperti analisis citra lalulintas untuk sistem kemudi otomatis, transfer gaya gambar dalam komputer vision dan analisis struktur mikrovaskular sebagaimana yang akan dilakukan pada penelitian ini \cite{wang_traffic_2023, zhang_image_2023, sultan_microvasculature_2023}
 
 
-\subsection{Deep Learning}
+\section{Deep Learning}
 
 \noindent Deep learning merupakan sub bidang dari machine learning yang menggunakan jaringan syaraf tiruan dengan banyak layer untuk mempelajari pola dari suatu data \cite{goodfellow_deep_2016,yang_deep_2023}. Perkembangan deep learning memberikan pengaruh besar pada analisis citra medis \cite{sistaninejhad_review_2023}. Dimana pada tahap awal perkembangan analisa citra medis, fitur-fitur diektraksi secara tradisional menggunakan teknik pemrosesan citra tradisional yang memakan waktu dan butuh validasi ahli \cite{huang_fully_2022}.  Kemudian, dengan munculnya deep leaning terutama \textit{Convolutional Neural Network} (CNN), proses ektraksi fiturpun menjadi otomatis \cite{huang_fully_2022,azad_medical_2022}. 
 
@@ -107,7 +107,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 
 \subsection{U-net}
 
-\noindent Salah satu arstitektur FCN yang terdiri dari bagian \textit{encoder-decoder}, khusus digunakan dalam tugas segmentasi citra biomedis adalah U-net yang dikenalkan pertama kali oleh Ronneberger et al.(2015) \cite{ronneberger_u-net_2015}. Arsitektur ini menjadi cukup populer di kalangan peneliti, terutama bidang analisis citra biomedis, karena kemampuannya untuk memberikan hasil segmentasi yang akurat dengan jumlah data pelatihan yang relatif kecil \cite{williams_unified_2023}.
+\noindent Arstitektur FCN yang terdiri dari bagian \textit{encoder-decoder}, khusus digunakan dalam tugas segmentasi citra biomedis adalah U-net yang pertama kali dikenalkan oleh Ronneberger et al.(2015) \cite{ronneberger_u-net_2015}. Arsitektur ini menjadi cukup populer di kalangan peneliti, terutama bidang analisis citra biomedis, karena kemampuannya untuk memberikan hasil segmentasi yang akurat dengan jumlah data pelatihan yang relatif kecil \cite{williams_unified_2023}.
 
 \begin{figure}[H]
 	\centering
@@ -134,7 +134,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 
 
 
-\subsection{Modul Attention Gate (AG)}
+\section{Modul Attention Gate (AG)}
 
 \noindent Penggunaan modul \textit{Attention Gate} (AG) pertamakali digunakan dalam \textit{deep learning} di pemrosesan bahasa alami (natural language proccessing)\cite{azad_medical_2022}. Modul ini mencari korelasi antara query dan key untuk mendapatkan bobot yang sesuai dengan kata kunci. Hasilnya, AG ini dapat menangkap hubungan antara teks dalam suatu wilayah atau paragraf dengan lebih tepat. Konsep serupa juga bisa digunakan dalam \textit{computer vision} \cite{huang_fully_2022}. Menerapkan AG dapat membuat model menggabungkan korelasi fitur-fitur regional, sehingga menghasilkan hasil deteksi tepi objek yang lebih baik untuk meningkatkan kinerja.
 
@@ -159,16 +159,16 @@ Diagram pada gambar \ref{fig:AG} menunjukkan skema kerja AG dalam Attention U-ne
 
 
 
-\subsection{Konvolusi, Pooling dan Dekonvolusi}
+\section{Konvolusi, Pooling dan Transpose Konvolusi}
 
-\noindent Konvolusi, pooling dan dekonvolusi merupakan lapisan operasi yang digunakan bersama-sama dalam \textit{deep learning}, termasuk U-net \cite{goodfellow_deep_2016,pajankar_convolutional_2022,bishop_deep_2024}.  Lapisan konvolusi bertindak sebagai pengekstraksi fitur, lapisan pooling berfungsi untuk mengurangi dimensi peta fitur, sedangkan dekonvolusi berfungsi untuk meningkatkan dimensi di bagian \textit{encode}r. 
+\noindent Konvolusi, pooling dan transpose konvolusi merupakan lapisan operasi yang digunakan bersama-sama dalam \textit{deep learning}, termasuk U-net \cite{goodfellow_deep_2016,pajankar_convolutional_2022,bishop_deep_2024}.  Lapisan konvolusi bertindak sebagai pengekstraksi fitur, lapisan pooling berfungsi untuk mengurangi dimensi peta fitur, sedangkan dekonvolusi berfungsi untuk meningkatkan dimensi di bagian \textit{encode}r. 
 
-\subsubsection{Konvolusi}
+\subsection{Konvolusi}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.6]{gambar/convolusi.png}
-	\caption{Contoh operasi konvolusi}
+	\caption{Penerapan konvolusi terhadap input}
 	\label{fig:convolusi}
 \end{figure}
 
@@ -178,108 +178,177 @@ Diagram pada gambar \ref{fig:AG} menunjukkan skema kerja AG dalam Attention U-ne
 	C(i, j) = (I * K)(i, j) = \sum_{m} \sum_{n} I(i - m, j - n) K(m, n)
 \end{equation}
 
-Dimana \((C(i,j))\) adalah hasil konvolusi pada posisi \((i,j)\). \((I(i-m, j-n))\) adalah nilai piksel citra masukan pada posisi \((i-m, j-n)\). \((K(m,n))\) adalah nilai pada filter di posisi \((m,n)\).
 
-\subsubsection{Pooling}
+\noindent
+keterangan:
+\begin{itemize}
+	\item $C(i,j)$ : hasil konvolusi pada posisi $(i,j)$
+	\item $I(i-m, j-n)$ : nilai piksel citra masukan pada posisi $(i-m, j-n)$
+	\item $K(m,n)$ : nilai pada filter di posisi $(m,n)$
+\end{itemize}
+
+\subsection{Pooling}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.4]{gambar/pooling.png}
-	\caption{Contoh pooling terhadap peta fitur}
+	\includegraphics[scale=0.8]{gambar/figure_8.pdf}
+	\caption{Pnerapan pooling terhadap peta fitur}
 	\label{fig:pooling}
 \end{figure}
 
-\noindent fungsi pooling merupakan sebuah fungsi untuk mengubah \textit{output} jaringan di lokasi tertentu menjadi ringkasan statistik dari \textit{output} terdekat\cite{goodfellow_deep_2016,bishop_deep_2024}. Fungsi ini berguna untuk melakukan down-sampling pada peta fitur, yang berarti mengurangi dimensi peta fitur sambil tetap mempertahankan informasi penting. \textit{Down-sampling} ini mengenalkan \textit{invariance} pada jaringan \cite{goodfellow_deep_2016}. Sehingga jaringan bisa melihat fitur mana yang lebih sering muncul, tanpa tergantung pada lokasi aslinya.
+\noindent Fungsi pooling merupakan sebuah fungsi untuk mengubah \textit{output} jaringan di lokasi tertentu menjadi ringkasan statistik dari \textit{output} terdekat\cite{goodfellow_deep_2016,bishop_deep_2024}. Fungsi ini berguna untuk melakukan down-sampling pada peta fitur, yang berarti mengurangi dimensi peta fitur sambil tetap mempertahankan informasi penting. \textit{Down-sampling} ini mengenalkan \textit{invariance} pada jaringan \cite{goodfellow_deep_2016}. Sehingga jaringan bisa melihat fitur mana yang lebih sering muncul, tanpa tergantung pada lokasi aslinya.
 
 \noindent Jenis pooling yang sering digunakan dalam deep learning meliputi \textit{max pooling}, yang mengambil nilai maksimum dari area yang dipilih \cite{bishop_deep_2024}. Kemudian ada \textit{average pooling} yang mengambil rata-rata dari nilai-nilai di area tersebut \cite{bishop_deep_2024}. Dalam arsitektur U-net, \textit{max pooling} digunakan karena efektif dalam mempertahankan fitur-fitur dominan yang penting untuk segmentasi.
 
-\subsubsection{Dekonvousi}
+\subsection{Transpose Konvolusi}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.4]{gambar/deconv.png}
-	\caption{Contoh dekonvolusi dari peta fitur}
+	\includegraphics[scale=0.8]{gambar/deconv.png}
+	\caption{Transpose konvolusi dari peta fitur}
 	\label{fig:deconv}
 \end{figure}
 
 
-\noindent Dekonvolusi atau \textit{transpose convolution} merupakan fungsi yang digunakan untuk meningkatkan dimensi peta fitur \cite{goodfellow_deep_2016,bishop_deep_2024}. Pada arsitektur U-net operasi ini digunakan pada bagian \textit{up-sampling} untuk mengembalikan ukuran peta fitur yang telah melalui bagian \textit{down-sampling} \cite{azad_medical_2022}. Cara kerja operasi ini adalah dengan menerapkan filter di seluruh peta fitur. Secara matematis proses dekonvolusi dapat dirumuskan sebagai berikut:
+\noindent Transpose konvolusi atau dekonvolusi merupakan fungsi yang digunakan untuk meningkatkan dimensi peta fitur \cite{goodfellow_deep_2016,bishop_deep_2024}. Pada arsitektur U-net fungsi ini digunakan pada bagian \textit{up-sampling} untuk mengembalikan ukuran peta fitur yang telah melalui bagian \textit{down-sampling} \cite{azad_medical_2022}. Cara kerja operasi ini adalah dengan menerapkan filter yang terhubung dengan satu piksel di tensor input pada patch yang ada di tensor output. Secara matematis proses dekonvolusi dapat dirumuskan sebagai berikut:
 
 \begin{equation}
 	I(i,j) = (C * K^T)(i,j) = \sum_{m} \sum_{n} C(m, n) K(i - m, j - n)
 \end{equation}
 
-\noindent Dimana \(I(i,j)\) adalah nilai pada posisi \((i,j)\) dari hasil transpose convolution. \(C(m,n)\) adalah nilai pada posisi \((m,n)\) dari input. \(K(i-m, j-n)\) adalah nilai pada posisi \((i-m, j-n)\) dari kernel/filter yang diterapkan terbalik.
+\noindent
+keterangan:
+\begin{itemize}
+	\item $I(i,j)$ : nilai pada posisi $(i,j)$ dari hasil transpose convolution
+	\item $C(m,n)$ : nilai pada posisi $(m,n)$ dari input
+	\item $K(i-m, j-n)$ : nilai pada posisi $(i-m, j-n)$ dari kernel/filter yang diterapkan terbalik
+\end{itemize}
 
 
 
-\subsection{Augmentasi Data}
+\section{Augmentasi Data}
 
 \noindent Teknik augmentasi data merupakan salah satu metode yang umum digunakan untuk meningkatkan peforma model deep learning \cite{minaee_image_2020}. Augmentasi data memungkinkan \textit{machine} untuk megenerasi data seperti orisinal, namun berbeda dalam padangan model yang digunakan dalam pelatihan \cite{huang_fully_2022}. Data augmentasi bisa meningkatkan variasi dari data dan mengurangi gap antara data latih dan uji untuk meningkatkan ketahanan model.
 
 \noindent Dalam pencitraan biomedis augmentasi sering digunakan dalam tugas segmentasi karena ketidakseimbangan antar kelas dalam tugas segmentasi. Oleh karena itu, lebih baik mempertahankan gambar asli fitur untuk konvergensi model. Dalam penerapannya augmentasi biasanya berupa transformasi gemoetris acak (rotation, scaling, shear dan flipping) dan modifikasi intensitas acak (normalization, blurring dan penyesuaian contrast)\cite{minaee_image_2020}.
 
 
-\subsection{Fungsi Aktivasi}
+\section{Fungsi Aktivasi}
 
-\noindent Fungsi aktivasi digunakan dalam \textit{deep learning} untuk memperkenalkan non-linieritas kepada sebuah jaringan, memungkinkan jaringan mengenali kompleksitas dari sebuah data \cite{younisse_fine-tuning_2023,heaton_ian_2018}. Tanpa adanya fungsi aktivasi, jaringan hanya akan menjadi representasi linier dari seluruh data yang dilatih \cite{chiang_activation_2023}. Selain itu, juga akan menyebabkan masalah seperti \textit{vanishing gradient} (gradien yang hilang) atau \textit{exploding gradient} (gradien yang meledak), yang akan menghambat proses pembelajaran jaringan. 
+\noindent Fungsi aktivasi digunakan dalam \textit{deep learning} untuk memperkenalkan non-linieritas kepada sebuah jaringan, memungkinkan jaringan mengenali kompleksitas dari sebuah data \cite{younisse_fine-tuning_2023,heaton_ian_2018}. Tanpa adanya fungsi aktivasi, jaringan hanya akan menjadi representasi linier dari seluruh data yang dilatih \cite{chiang_activation_2023}. Selain itu, juga akan menyebabkan masalah seperti \textit{vanishing gradient} (gradien yang hilang) atau \textit{exploding gradient} (gradien yang meledak), yang akan menghambat proses pembelajaran jaringan. Salah dua fungsi aktivasi yang sering digunakan dalam arsitektur jaringan U-net adalah \textit{Rectified Linier Unit} (ReLU) dan \textit{sigmoid}. %Penjelasan singkat dari keduanya adalah sebagai berikut ini:
 
-\noindent Salah dua fungsi aktivasi yang sering digunakan dalam arsitektur jaringan U-net adalah \textit{Rectified Linier Unit} (ReLU) dan \textit{sigmoid}. %Penjelasan singkat dari keduanya adalah sebagai berikut ini:
-
-\subsubsection{ReLU:}
+\subsection{ReLU:}
 Merupakan singkatan dari \textit{rectified linier unit}. Cara kerja dari fungsi aktivasi ini cukup sederhana, jika input (x) adalah positif maka outputnya adalah nilai itu sendiri \cite{younisse_fine-tuning_2023}. Jika inpuntya negatif atau nol maka outputnya adalah nol. Dengan kata lain, fungsi aktivasi ReLU mengaktifkan neuron dengan input positif dan menonaktifkan selainnya. secara matematis fungsi ReLU adalah sebagai berikut ini: 
 
 \begin{equation}
 	\sigma(x) = \max(0, x)
 \end{equation}
 
-Dimana \(x\)\ adalah nilai piksel setiap \textit{feature map} yang dihasilkan lapisan konvolusi. \(max\) adalah fungsi yang akan memilih nilai terbesar antara 0 dan nilai x.
+\noindent
+keterangan:
+\begin{itemize}
+	\item $x$ : nilai piksel setiap \textit{feature map} yang dihasilkan lapisan konvolusi
+	\item $\max$ : fungsi yang akan memilih nilai terbesar antara 0 dan nilai $x$
+\end{itemize}
 
-\subsubsection{Sigmoid:}
+\subsection{Sigmoid:}
 Merupakan fungsi aktivasi yang memetakan setiap nilai input (x) ke rentang kontitu antara 0 dan 1 untuk melihat ada atau tiadanya sebuah feature \cite{younisse_fine-tuning_2023}. Nilai output akan mendekati 1 untuk input yang sangat besar dan mendekati 0 untuk input yang sangat kecil. Secara matematis fungsi sigmoid dapat didefinisikan sebagai berikut:
 
 \begin{equation}
 	\sigma(x) = \frac{1}{1 + e^{-x}}
 \end{equation}
 
-Dimana \(x\) adalah input dari fungsi. \(e\) adalah bilangan \textit{Euler} (bernilai 2.71828)
+\noindent
+keterangan:
+\begin{itemize}
+	\item $x$ : input dari fungsi
+	\item $e$ : bilangan \textit{Euler} (bernilai 2.71828)
+\end{itemize}
+
+
+\section{Fungsi Loss}
+
+\noindent Dalam deep learning, pelatihan model merupakan upaya untuk mendekati fungsi sebenarnya dari hubungan kompleks antara input dan output \cite{dawani_hands-mathematics_2020}. Oleh karena itu, fungsi loss diperlukan untuk mengukur seberapa baik kinerja model dalam pelatihan memetakan input ke output yang diinginkan. Pada arsitektur U-net, loss function yang sering digunakan adalah cross-entropy dan dice cofficient \cite{huang_fully_2022}.  
+
+\subsection{Cross-entropy} Fungsi loss ini mengukur perbedaan antara distribusi probabilitas prediksi model dan distribusi probabilitas ground truth \cite{herrera_impact_2022}. Rumusan matematis dari \textit{cross-entropy} adalah sebagai berikut:
+
+\begin{equation} 
+	H(p, q) = - \sum_{x} p(x) \log q(x) 
+\end{equation} 
+
+\noindent
+keterangan:
+\begin{itemize}
+	\item $p(x)$ : distribusi probabilitas ground truth
+	\item $q(x)$ : distribusi probabilitas hasil prediksi oleh model
+\end{itemize}
+
+\subsection{Dice coefficient} Fungsi loss ini menghitung area tumpang tindih yang berpasangan antara prediksi segmentasi model dan ground truth, kemudian dibagi dengan piksel yang sama di setiap pasangan \cite{herrera_impact_2022}. Secara matematis dirumuskan sebagai berikut:
+
+\begin{equation}
+	s = \frac{2|X \cap Y|}{|X| + |Y|}
+\end{equation}
+	
+\noindent
+keterangan:
+\begin{itemize}
+	\item $X$ : hasil prediksi oleh model
+	\item $Y$ : ground truth
+\end{itemize}
+
+
+\section{Optimizer}
+\noindent Tahap pelatihan model deep learning merupakan proses mencari set parameter yang paling benar untuk membuat prediksi yang efektif \cite{dawani_hands-mathematics_2020, bishop_deep_2024}. Optimizer pada tahap pelatihan berfungsi untuk mengoptimalkan bobot (weight) dan bias dalam model berdasarkan nilai error yang dihasilkan pada layer output.  Penelitian ini tertarik pada \textit{stocastic gradient descent} (SGD) dan Adam. Dimana SGD digunakan pada \textit{breaktrough} U-net oleh Ronnberger et al. (2015) \cite{ronneberger_u-net_2015}. Pada SGD, parameter model diperbarui berdasarkan gradien yang dihitung dari subset data acak dari dataset pelatihan. Adam memberikan hasil pelatihan yang baik pada penelitian tentang fine-tuning U-net oleh Younise et al. (2023) \cite{younisse_fine-tuning_2023}. Adam menggunakan gradien kuadrat untuk menyesuaikan learning rate dan momentum untuk mempercepat konvergensi dengan mengakumulasi gradien sebelumnya.
 
 
 
+\section{Metriks Evaluasi}
+\noindent Kinerja tugas segmentasi dari jaringan dievaluasi secara kuantitatif menggunakan \textit{precision}, \textit{recall} ,\textit{intersection over union }(IoU) dan \textit{dice similarity coefficient }(DSC) \cite{jiang_iu-net_2023}. IoU dan DSC digunakan untuk mengevaluasi kemiripan antara hasil segmentasi dan ground truth, dimana semakin IoU dan DSC maka semakin dekat prediksi dengan ground truth. %Penjelasan dari setiap metriks yang digunakan adalah sebagai berikut ini:
 
-
-
-\subsection{Metriks Evaluasi}
-\noindent Kinerja tugas segmentasi dari jaringan dievaluasi secara kuantitatif menggunakan \textit{precision}, \textit{recall} ,\textit{intersection over union }(IoU) dan \textit{dice similarity coefficient }(DSC) \cite{jiang_iu-net_2023}. IoU dan DSC digunakan untuk mengevaluasi kemiripan antara hasil segmentasi dan ground truth, dimana semakin IoU dan DSC maka semakin dekat prediksi dengan ground truth. Penjelasan dari setiap metriks yang digunakan adalah sebagai berikut ini:
-
-\subsubsection{Precission:}
+\subsection{Precission:}
 \noindent Merupakan metriks yang digunakan dalam pengukuran proporsi prediksi yang benar (true positive) dari semua prediksi positif yang dihasilkan model \cite{jiang_iu-net_2023}. Dalam tugas segmentasi, \textit{precision} mengukur seberapa banyak piksel yang diprediksi merupakan bagian dari objek yang benar termasuk kedalam objek tersebut. secara matematis \textit{precision} dapat dirumuskan sebagai berikut:
 
 \begin{equation}
 	\text{Precision} = \frac{TP}{TP + FP}
 \end{equation}
 
-\noindent Dimana \(TP\)(true positive) adalah jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek. \(FP\)(false positive) adalah jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek.
+\noindent
+keterangan:
+\begin{itemize}
+	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
+	\item $FP$ (false positive): jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek
+\end{itemize}
 
-\subsubsection{Recall:}
+\subsection{Recall:}
 \noindent Merupakan metriks yang digunakan dalam pengukuran proporsi prediksi benar dari semua prediksi positif yang dihasilkan model \cite{jiang_iu-net_2023}.  Dalam dalam tugas segmentasi, \textit{recall} mengukur seberapa banyak piksel yang prediksi sebagai bagian dari objek benar-benar bagian dari objek tersebut. secara matematis dapat dirumuskan sebagai berikut ini:
 
 \begin{equation}
 	\text{Recall} = \frac{TP}{TP + FN}
 \end{equation}
 
-\noindent Dimana \(TP\) adalah jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek. \(FN\)(false negative) merupakan Jumlah piksel yang merupakan bagian dari objek namun diprediksi sebgai bukan bagian dari objek.
+\noindent
+keterangan:
+\begin{itemize}
+	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
+	\item $FN$ (false negative): jumlah piksel yang merupakan bagian dari objek namun diprediksi sebagai bukan bagian dari objek
+\end{itemize}
 
-\subsubsection{IoU:}
+\subsection{IoU:}
 \noindent Merupakan metriks yang digunakan untuk mengukur sejauh mana segmen yang diprediksi oleh model tumpang tindih dengan segmen \textit{ground truth}\cite{jiang_iu-net_2023}. Secara matematis IoU dapat dirumuskan sebagai berikut:
 
 \begin{equation}
 	\text{IoU} = \frac{TP}{TP + FP + FN}
 \end{equation}
 
-\noindent Dimana \(TP\) adalah jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek. \(FP\) adalah jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek. \(FN\) merupakan Jumlah piksel yang merupakan bagian dari objek namun diprediksi sebagai bukan bagian dari objek. 
+\noindent
+keterangan:
+\begin{itemize}
+	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
+	\item $FP$ (false positive): jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek
+	\item $FN$ (false negative): jumlah piksel yang merupakan bagian dari objek namun diprediksi sebagai bukan bagian dari objek
+\end{itemize}
 
-\subsubsection{DSC:}
+\subsection{DSC:}
 
 \noindent Merupakan metriks yang digunakan untuk mengukur kesamaan antara segmen yang diprediksi oleh model dan segmen ground truth\cite{jiang_iu-net_2023}. Metrik ini menggunakan faktor dua pada TP sehingga lebih sensitif terhadap kesalah pada area kecil daripada IoU. Secara matematis dapat dirumuskan sebagai berikut:
 
@@ -287,6 +356,12 @@ Dimana \(x\) adalah input dari fungsi. \(e\) adalah bilangan \textit{Euler} (ber
 	\text{DSC} =  \frac{2TP}{2TP + FP + FN}
 \end{equation}
 
-\noindent Dimana \(TP\) adalah jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek. \(FP\) adalah jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek. \(FN\) merupakan Jumlah piksel yang merupakan bagian dari objek namun diprediksi sebagai bukan bagian dari objek. 
+\noindent
+keterangan:
+\begin{itemize}
+	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
+	\item $FP$ (false positive): jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek
+	\item $FN$ (false negative): jumlah piksel yang merupakan bagian dari objek namun diprediksi sebagai bukan bagian dari objek
+\end{itemize}
 
 
