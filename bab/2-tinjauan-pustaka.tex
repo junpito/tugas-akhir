@@ -19,7 +19,7 @@
 \noindent Mikrovaskular merupakan cabang terkecil dari pembuluh darah, memainkan peran penting dalam sirkulasi darah dan pertukaran zat diseluruh tubuh \cite{rusanova_role_2022}. Struktur ini, dengan ukuran kurang dari 100 mikrometer, terdiri dari arteriol, kapiler dan venula \cite{mescher_junqueiras_2021,pepe_microvascular_2023}. Arteriol merupakan pembuluh darah berdiameter 10-100 $\mu$m yang bertindak sebagai pengatur tekanan darah. Kapiler merupakan pembuluh darah berdiameter 4-10 $\mu$m yang berfungsi sebagai tempat pertukaran metabolit antara darah dan jaringan \cite{haffner_emerging_2023}. Venula merupakan pembuluh darah berdiameter 10-100 $\mu$m tempat berlanjutnya aliran darah dari kapiler dan membawanya ke vena. Struktur ini juga berperan sebagai tempat keluarnya leukosit (sel darah putih) untuk mengatasi infeksi atau peradangan pada jaringan.
 
 
-\noindent Studi tentang mikrovaskular sangat penting dalam bidang kesehatan dan patologi. penelitian internasional yang sedang berlangsung \textit{Human Cell Atlas }(HCA) oleh Chan Zuckerberg Initiative, \textit{Human Protein Atlas} (HPA) oleh Knut and Allice Wallenberg Foundation dan \textit{Human BioMolecular Atlas Program} (HuBMAP) oleh National Institutes of Health menggunakan kerangka kerja yang bernama \textit{Vascular Common Coordinate Framework} (VCCF) memanfaatkan pembuluh darah sebagai sistem koordinat dalam tubuh manusia untuk memetakan setiap sel di seluruh tubuh manusia \cite{weber_considerations_2020}. penelitian tersebut dilakukan untuk memahami spesialisasi, interaksi dan organisasi spasial setiap sel dalam tubuh manusia.
+\noindent Studi tentang mikrovaskular sangat penting dalam bidang kesehatan dan patologi. penelitian internasional yang sedang berlangsung \textit{Human Cell Atlas }(HCA) oleh Chan Zuckerberg Initiative, \textit{Human Protein Atlas} (HPA) oleh Knut and Allice Wallenberg Foundation dan \textit{Human BioMolecular Atlas Program} (HuBMAP) oleh National Institutes of Health menggunakan kerangka kerja yang bernama \textit{Vascular Common Coordinate Framework} (VCCF) yang memanfaatkan pembuluh darah sebagai sistem koordinat dalam tubuh manusia untuk memetakan setiap sel di seluruh tubuh manusia \cite{weber_considerations_2020,zhang_attention-based_2023}. penelitian tersebut dilakukan untuk memahami spesialisasi, interaksi dan organisasi spasial setiap sel dalam tubuh manusia.
 
 \noindent Pemanfaatan mikrovaskular sebagai kordinat pada kerangka kerja VCCF tersebut bisa dilakukan karena pembuluh darah  mengikuti setiap jalur unik di setiap organ sehingga bisa mencerminkan sifat biologis khusus setiap jaringan \cite{weber_considerations_2020}. Kerumitan struktur mikrovaskular mencerminkan kompleksitas organ dan jaringan yang dilaluinya, sehingga dapat menyoroti ketergantungan antara mikrovaskular dan sel dalam menjalankan fungsi yang tepat. 
 
@@ -61,7 +61,7 @@
 		\caption{Papila}
 		\label{fig:papila}
 	\end{subfigure}
-	\caption{Sample WSI pada bagian ginjal}
+	\caption{Sample WSI pada bagian ginjal \cite{howard_hubmap_2023}}
 	\label{fig:ginjal}
 \end{figure}
 
@@ -100,7 +100,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.2]{gambar/gambar-fcn.png}
-	\caption{Model FCN yang bagian terakhirnya di gantikan dengan blok konvolusi. FCN juga menggunakan skip connection untuk mentapkan lokasi dari fitur yang telah di ekstrak oleh encoder}
+	\caption{Model FCN yang bagian terakhirnya di gantikan dengan blok konvolusi \cite{huang_fully_2022}}
 	\label{fig:fcn}
 \end{figure}
 
@@ -112,7 +112,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.2]{gambar/U-net.png}
-	\caption{Arsitektur dasar U-net yang digunakan untuk tugas segmentasi citra biomedis}
+	\caption{Arsitektur dasar U-net yang digunakan untuk tugas segmentasi citra biomedis \cite{ronneberger_u-net_2015}}
 	\label{fig:U-net}
 \end{figure}
 
@@ -141,7 +141,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.7]{gambar/AG-U.png}
-	\caption{Diagram Attention U-net untuk tugas segmentasi}
+	\caption{Diagram Attention U-net untuk tugas segmentasi \cite{oktay_attention_2018}}
 	\label{fig:Attention-U-net}
 \end{figure}
 
@@ -151,7 +151,7 @@ Struktur FCN seperti pada gambar \ref{fig:fcn} menerapkan beberapa blok konvolus
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.6]{gambar/AG.png}
-	\caption{Diagram alur kerja Attention Gate}
+	\caption{Diagram alur kerja Attention Gate \cite{oktay_attention_2018}}
 	\label{fig:AG}
 \end{figure}
 
@@ -168,11 +168,11 @@ Diagram pada gambar \ref{fig:AG} menunjukkan skema kerja AG dalam Attention U-ne
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.6]{gambar/convolusi.png}
-	\caption{Penerapan konvolusi terhadap input}
+	\caption{Penerapan konvolusi terhadap input \cite{huang_fully_2022}}
 	\label{fig:convolusi}
 \end{figure}
 
-\noindent adalah operasi matematika dimana sebuah kernel (atau filter) digeserkan pada bagian gambar input untuk memproduksi \textit{feature map} (peta fitur) \cite{pajankar_convolutional_2022}.  Pada gambar menunjukkan kernel yang berbeda akan menghasilkan peta fitur yang berbeda juga. Dalam library \textit{deep learning} operasi  konvolusi yang digunakan disebut \textit{cross-corrlelation}\cite{goodfellow_deep_2016}. Dengan formula sebagai berikut:
+\noindent Konvolusi adalah operasi matematika dimana sebuah kernel (atau filter) digeserkan pada bagian gambar input untuk memproduksi \textit{feature map} (peta fitur) \cite{pajankar_convolutional_2022}.  Pada gambar menunjukkan kernel yang berbeda akan menghasilkan peta fitur yang berbeda juga. Dalam library \textit{deep learning} operasi  konvolusi yang digunakan disebut \textit{cross-corrlelation}\cite{goodfellow_deep_2016}. Dengan formula sebagai berikut:
 
 \begin{equation}
 	C(i, j) = (I * K)(i, j) = \sum_{m} \sum_{n} I(i - m, j - n) K(m, n)
@@ -192,7 +192,7 @@ keterangan:
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{gambar/figure_8.pdf}
-	\caption{Pnerapan pooling terhadap peta fitur}
+	\caption{Pnerapan pooling terhadap peta fitur \cite{bishop_deep_2024}}
 	\label{fig:pooling}
 \end{figure}
 
@@ -205,7 +205,7 @@ keterangan:
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{gambar/deconv.png}
-	\caption{Transpose konvolusi dari peta fitur}
+	\caption{Transpose konvolusi dari peta fitur \cite{bishop_deep_2024}}
 	\label{fig:deconv}
 \end{figure}
 
@@ -298,7 +298,7 @@ keterangan:
 
 
 \section{Optimizer}
-\noindent Tahap pelatihan model deep learning merupakan proses mencari set parameter yang paling benar untuk membuat prediksi yang efektif \cite{dawani_hands-mathematics_2020, bishop_deep_2024}. Optimizer pada tahap pelatihan berfungsi untuk mengoptimalkan bobot (weight) dan bias dalam model berdasarkan nilai error yang dihasilkan pada layer output.  Penelitian ini tertarik pada \textit{stocastic gradient descent} (SGD) dan Adam. Dimana SGD digunakan pada \textit{breaktrough} U-net oleh Ronnberger et al. (2015) \cite{ronneberger_u-net_2015}. Pada SGD, parameter model diperbarui berdasarkan gradien yang dihitung dari subset data acak dari dataset pelatihan. Adam memberikan hasil pelatihan yang baik pada penelitian tentang fine-tuning U-net oleh Younise et al. (2023) \cite{younisse_fine-tuning_2023}. Adam menggunakan gradien kuadrat untuk menyesuaikan learning rate dan momentum untuk mempercepat konvergensi dengan mengakumulasi gradien sebelumnya.
+\noindent Tahap pelatihan model deep learning merupakan proses mencari set parameter yang paling benar untuk membuat prediksi yang efektif \cite{dawani_hands-mathematics_2020, bishop_deep_2024}. Optimizer pada tahap pelatihan berfungsi untuk mengoptimalkan bobot (weight) dan bias dalam model berdasarkan nilai error yang dihasilkan pada layer output.  Penelitian ini tertarik pada \textit{stocastic gradient descent} (SGD) dan Adam. Dimana SGD digunakan pada \textit{breaktrough} U-net oleh Ronnberger et al. (2015) \cite{ronneberger_u-net_2015}. Pada SGD, parameter model diperbarui berdasarkan gradien yang dihitung dari subset data acak dari dataset pelatihan. Adam memberikan hasil pelatihan yang baik pada penelitian tentang \textit{fine-tuning} U-net oleh Younise et al. (2023) \cite{younisse_fine-tuning_2023}. Adam menggunakan gradien kuadrat untuk menyesuaikan learning rate dan momentum untuk mempercepat konvergensi dengan mengakumulasi gradien sebelumnya.
 
 
 

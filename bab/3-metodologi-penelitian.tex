@@ -10,9 +10,33 @@
 
 \section{Dataset Penelitian}
 
-\noindent Dataset yang digunakan pada penelitian ini adalah data yang telah disediakan \textit{Human BioMolecular Atlas Program }(HuBMAP) di Kaggle: \url{https://www.kaggle.com/competitions/hubmap-organ-segmentation}\cite{howard_hubmap_2023}.  Data ini berisi citra WSL mikrovaskular ginjal manusia yang telah diwarnai menggunakan metode \textit{2D PAS-stained}. \textit{2D PAS-stained} mengacu pada citra dua dimensi yang diwarnai menggunakan pewarnaan Periodic Acid-Schiff (PAS). Data ini terdiri dari 7033 citra yang telah diwarnai dengan format TIFF beresolusi 512x512 dimana 1633 telah dianotasikan ke tiga kelas yakni, \textit{blood vessels}(pembuluh darah), \textit{glomelurus} dan \textit{unsure}(dikeragui).  Anotasi dari data tersebut disimpan dalam file json yang merepresentasikan kordinat mask poligon yang sesuai dengan area setiap kelas pada gambar. Dalam penelitian ini hanya data yang telah dianotasikan saja yang akan digunakan untuk melatih model yang akan dikembangkan.
+\noindent Dataset yang digunakan pada penelitian ini adalah data yang telah disediakan \textit{Human BioMolecular Atlas Program }(HuBMAP) di Kaggle: \url{https://www.kaggle.com/competitions/hubmap-organ-segmentation}\cite{howard_hubmap_2023}.  Data ini berisi citra WSL mikrovaskular ginjal manusia yang telah diwarnai menggunakan metode \textit{2D PAS-stained}. \textit{2D PAS-stained} mengacu pada citra dua dimensi yang diwarnai menggunakan pewarnaan Periodic Acid-Schiff (PAS). Data ini terdiri dari 7033 citra yang telah diwarnai dengan format TIFF beresolusi 512x512 dimana 1633 telah dianotasikan ke tiga kelas yakni, \textit{blood vessels}(pembuluh darah), \textit{glomelurus} dan \textit{unsure}(dikeragui).  Anotasi dari data tersebut disimpan dalam file json yang merepresentasikan kordinat mask poligon yang sesuai dengan area setiap kelas pada gambar. Dalam penelitian ini hanya data yang telah dianotasikan saja yang akan digunakan untuk melatih model dengan menggabungkan ketiga kelas anotasi menjadi satu kelas mikrovaskular.
 
-
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{gambar/image.png}
+		\caption{Image}
+		\label{fig:image}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{gambar/overlayed_image.png}
+		\caption{Ovelayed image}
+		\label{fig:overlayed-image}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{gambar/pixelwise_label.png}
+		\caption{Pixel wise label}
+		\label{fig:Pixel wise label}
+	\end{subfigure}
+	\caption{Sample WSI yang telah dianotasikan}
+	\label{fig:sample_data}
+\end{figure}
 
 \section{Spesifikasi Perangkat}
 
@@ -63,6 +87,8 @@ keterangan:
 
 \noindent Proses ini merupakan teknik untuk megenerasi  data yang mirip dengan data original namun berbeda pada pandangan model. Pada penelitian ini akan dilakukan augmentasi berupa transformasi geometri secara acak seperti: rotation (rotasi), scaling(skala), shear(geser) dan flipping(membalikkan).
 
+\section{Pelatihan}
+Dalam tahap pelatihan citra input dan anotasinya akan digunakan untuk melatih model dengan menuggunakan optimizer Adam dan \textit{Stocastic gradient descent} secara terpisah untuk melihat optimizer mana yang paling cocok dengan model. Kemudian fungsi loss \textit{cross entropy} dan \textit{Dice coefficient loss} akan digunakan secara bersamaan untuk mengatasi masalah ketidakseimbangan kelas dalam pelatihan.
 
 
 \section{Eksperimen dan evaluasi}
