@@ -1,4 +1,5 @@
 \chapter{METODE PENELITIAN}
+\label{sec:metode-penelitian}
 
 \noindent Dalam penelitian ini akan dilakukan implementasi model Attention U-net untuk segmentasi mikrovaskular dalam WSI ginjal manusia sehat.  Penggunaan \textit{Aattention Gate} (AG) pada U-net dipilih untuk memusatkan perhatian model pada \textit{feature} yang berpengaruh dari \textit{encoder} ,sehingga bisa meningkatkan peforma model dalam tugas segmentasi mikrovaskular dalam WSI ginjal manusia sehat. Penelitian ini melibatkan beberapa tahapan mulai dari penginputan data sampai ke evaluasi model. Secara mendetail seluruh proses dari penelitian ini bisa dilihat pada flowchart berikut ini:
 \begin{figure}[H]
@@ -96,42 +97,50 @@ keterangan:
 
 
 \section{Pelatihan}
-Dalam tahap pelatihan citra input dan anotasinya akan digunakan untuk melatih model dengan menuggunakan optimizer Adam dan \textit{Stocastic gradient descent} secara terpisah untuk melihat optimizer mana yang paling cocok dengan model. Kemudian fungsi loss \textit{cross entropy} dan \textit{Dice coefficient loss} akan digunakan secara bersamaan untuk mengatasi masalah ketidakseimbangan kelas dalam pelatihan. Untuk hyperparameter yang akan digunakan selama pelatihan adalah sebagai berikut:
+\noindent Pada tahap pelatihan ini, citra input beserta anotasinya akan digunakan untuk melatih model Attention U-net yang dikembangkan beserta U-net yang akan digunakan sebagai perbandingan peforma. Setiap arsitektur diuji dengan dua jenis optimizer, yaitu Adam dan \textit{Stochastic Gradient Descent (SGD)}, untuk mengevaluasi kinerja segmentasi mikrovaskular ginjal manusia pada setiap kombinasi model dan optimizer.
+
+Proses pelatihan dilakukan dengan menggunakan kombinasi fungsi loss \textit{cross entropy} dan \textit{Dice coefficient loss} untuk menangani ketidakseimbangan kelas pada data. Selain itu, teknik oversampling diterapkan pada kelas minoritas untuk meningkatkan proporsi sampel minoritas di dalam batch data.
+
+Untuk setiap kombinasi model dan optimizer, dilakukan variasi batch size sebesar 4, 8, dan 16 untuk menentukan ukuran batch yang memberikan hasil \textit{Dice Similarity Coefficient (DSC)} terbaik. Ukuran batch yang menghasilkan DSC tertinggi pada tahap awal ini kemudian dipilih sebagai batch size utama dan digunakan kembali dalam teknik oversampling guna memastikan konsistensi performa.
+
+Penyesuaian laju pembelajaran (\textit{learning rate}) dilakukan secara otomatis menggunakan \textit{Reduce on Plateau callback}, sehingga tidak perlu divariasikan secara manual. Selain itu, pelatihan dihentikan secara dini menggunakan \textit{early stopping callback} yang memantau performa model pada data validasi, sehingga jumlah epoch tidak perlu ditentukan secara spesifik.
+
+Berikut adalah tabel konfigurasi hyperparameter yang digunakan dalam pelatihan:
 
 \begin{table}[h]
 	\centering
-	\caption{Variasi hyper parameter yang akan digunakan.}
-	\label{tab:cpu-specs}
-	\begin{tabular}{ll}
+	\caption{Variasi hyperparameter dalam pelatihan model.}
+	\label{tab:hyperparameter}
+	\begin{tabular}{lllll}
 		\hline
-		\textbf{Hyperparameter} & \textbf{Variasi}       \\ \hline
-		Learning rate            & 0.001(default), 0.0001 \\
-		Batch size               & 4, 8                   \\
-		Epoch                    & 20, 30                 \\ \hline
+		\textbf{Hyperparameter} & \multicolumn{4}{l}{\textbf{Variasi}}                  \\ \hline
+		Arsitektur Model        & \multicolumn{4}{l}{Attention U-net, U-net}            \\
+		Optimizer               & \multicolumn{4}{l}{Adam, SGD}                         \\
+		Batch size              & \multicolumn{4}{l}{4, 8, 16}                          \\
+		Epotch                  & \multicolumn{4}{l}{Ditentukan oleh \textit{early stopping}}    \\
+		Learning rate           & \multicolumn{4}{l}{Ditentukan oleh \textit{Reduce on Plateau}} \\ \hline
 	\end{tabular}
 \end{table}
 
 
-\section{Eksperimen dan evaluasi}
+\section{Evaluasi}
 
-\noindent Dalam tahapan ini akan dilakukan serangkaian eksperimen untuk menjawab pertanyaan permasalahan yang telah dirumuskan. Eksperimen ini dirancang untuk mengevaluasi kinerja model Attention U-net yang diimplementasikan untuk segmentasi mikrovaskular dalam citra WSI ginjal manusia sehat. Berikut adalah berberapa eksperiment yang akan dilakukan dalam penelitian ini:
+\noindent Tahap evaluasi dilakukan untuk menilai kinerja model segmentasi dalam mendeteksi struktur mikrovaskular ginjal. Evaluasi ini dilakukan dengan menggunakan beberapa metrik yang sering digunakan dalam tugas segmentasi, yaitu \textit{precision}, \textit{recall}, \textit{intersection over union} (IoU), dan \textit{dice similarity coefficient} (DSC) \cite{jiang_iu-net_2023}. Metrik-metrik ini dipilih karena mampu memberikan gambaran kuantitatif mengenai akurasi dan kualitas hasil segmentasi yang dihasilkan oleh model terhadap \textit{ground truth}.
 
 \begin{itemize}
-	\item Model dasar U-net:
-	\noindent Eksperimen pertama yang dilakuakan adalah pengimplementasikan model dasar U-net. Model dasar ini juga akan digunakan sebagai titik acuan perbandingan dan evaluasi selanjutnya.
+	\item \textbf{Precision}: Precision mengukur proporsi area yang terdeteksi sebagai mikrovaskular yang benar-benar termasuk dalam kategori tersebut. Precision yang tinggi menunjukkan bahwa model mampu mengurangi \textit{false positives} dalam prediksi segmentasi.
 	
-	%\item Model dasar U-net dengan Augmentasi data:
-	%\noindent Ekperimen ini akan menambahkan teknik augmentasi data pada model dasar U-net  untuk melihat pengaruh penambahan variasi data peforma model.
-
-	\item Model U-net dengan penerapan Attention Gate:
-	\noindent Pada ekperimen ini, attention gate akan ditambahkan ke model U-net untuk menguji pengaruh AG pada peforma model.
+	\item \textbf{Recall}: Recall mengukur kemampuan model dalam mendeteksi area mikrovaskular secara menyeluruh. Nilai recall yang tinggi menunjukkan bahwa model berhasil menemukan sebagian besar area yang benar-benar termasuk dalam struktur mikrovaskular, dengan meminimalkan \textit{false negatives}.
 	
-	%\item Model Attention U-net dengan Augmentasi data:
-	%\noindent Ekperimen ini menggabungkan model Attention U-net dengan teknik augmentasi data untuk mengoptimalkan hasil segmentasi dari Attention U-net.
+	\item \textbf{Intersection over Union (IoU)}: IoU mengukur tingkat tumpang tindih antara hasil segmentasi dan \textit{ground truth}. Nilai IoU yang mendekati 1 menunjukkan tingkat akurasi spasial yang tinggi, dengan segmentasi yang dihasilkan model sangat mirip dengan \textit{ground truth}.
 	
-	%\item Model dasar FCN:
-	%\noindent Sebagai tambahan, model dasar FCN juga akan di implementasikan untuk membandingkan peforma segmentasi FCN dengan U-net.
+	\item \textbf{Dice Similarity Coefficient (DSC)}: DSC merupakan metrik yang sering digunakan untuk menilai kualitas segmentasi, karena memberikan bobot yang sama pada precision dan recall. DSC juga mengukur kemiripan antara hasil segmentasi dan \textit{ground truth}, di mana nilai yang mendekati 1 menunjukkan bahwa hasil segmentasi sangat mendekati area yang diharapkan.
 \end{itemize}
+
+Secara keseluruhan, semakin tinggi nilai precision, recall, IoU, dan DSC, maka semakin baik kinerja model dalam melakukan segmentasi struktur mikrovaskular ginjal. IoU dan DSC, khususnya, digunakan sebagai metrik utama untuk mengevaluasi tingkat kemiripan antara hasil segmentasi dan \textit{ground truth}, di mana semakin mendekati nilai 1, maka semakin baik prediksi yang dihasilkan oleh model.
+
+
+
 
 
 
