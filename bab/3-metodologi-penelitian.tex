@@ -103,7 +103,7 @@ Proses pelatihan dilakukan dengan menggunakan kombinasi fungsi loss \textit{cros
 
 Untuk setiap kombinasi model dan optimizer, dilakukan variasi batch size sebesar 4, 8, dan 16 untuk menentukan ukuran batch yang memberikan hasil \textit{Dice Similarity Coefficient (DSC)} terbaik. Ukuran batch yang menghasilkan DSC tertinggi pada tahap awal ini kemudian dipilih sebagai batch size utama dan digunakan kembali dalam teknik oversampling guna memastikan konsistensi performa.
 
-Penyesuaian laju pembelajaran (\textit{learning rate}) dilakukan secara otomatis menggunakan \textit{Reduce on Plateau callback}, sehingga tidak perlu divariasikan secara manual. Selain itu, pelatihan dihentikan secara dini menggunakan \textit{early stopping callback} yang memantau performa model pada data validasi, sehingga jumlah epoch tidak perlu ditentukan secara spesifik.
+Penyesuaian laju pembelajaran (\textit{learning rate}) dilakukan secara otomatis menggunakan \textit{ReduceLROnPlateau callback}, sehingga tidak perlu divariasikan secara manual. Selain itu, pelatihan dihentikan secara dini menggunakan \textit{early stopping callback} yang memantau performa model pada data validasi, sehingga jumlah epoch tidak perlu ditentukan secara spesifik.
 
 Berikut adalah tabel konfigurasi hyperparameter yang digunakan dalam pelatihan:
 
@@ -118,7 +118,7 @@ Berikut adalah tabel konfigurasi hyperparameter yang digunakan dalam pelatihan:
 		Optimizer               & \multicolumn{4}{l}{Adam, SGD}                         \\
 		Batch size              & \multicolumn{4}{l}{4, 8, 16}                          \\
 		Epotch                  & \multicolumn{4}{l}{Ditentukan oleh \textit{early stopping}}    \\
-		Learning rate           & \multicolumn{4}{l}{Ditentukan oleh \textit{Reduce on Plateau}} \\ \hline
+		Learning rate           & \multicolumn{4}{l}{Ditentukan oleh \textit{ReduceOnPlateau}} \\ \hline
 	\end{tabular}
 \end{table}
 

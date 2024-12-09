@@ -210,8 +210,7 @@
 
 \section{Hasil Segmentasi Mikrovaskular}
 
-\noindent Berdasarkan evaluasi kuantitatif pada subbab sebelumnya, model Attention U-Net menunjukkan performa yang lebih unggul dibandingkan U-Net dalam tugas segmentasi mikrovaskular ginjal, dengan peningkatan pada metrik utama seperti Dice Similarity Coefficient (DSC), Intersection over Union (IoU), precision, dan recall. Subbab ini bertujuan untuk memperkuat hasil evaluasi kuantitatif tersebut melalui visualisasi hasil segmentasi, dengan menyoroti area keberhasilan model serta tantangan yang masih dihadapi. Hasil visualisasi segmentasi yang ditampilkan berikut ini berasal dari model Attention U-Net dengan oversampling, yang menunjukkan performa terbaik berdasarkan metrik evaluasi (DSC: 0.624, IoU: 0.413).
-
+\noindent Berdasarkan evaluasi kuantitatif pada subbab sebelumnya, model Attention U-Net menunjukkan performa yang lebih unggul dibandingkan U-Net dalam tugas segmentasi mikrovaskular ginjal, dengan peningkatan pada metrik utama seperti Dice Similarity Coefficient (DSC), Intersection over Union (IoU), precision, dan recall. Nilai DSC sebesar 0.624 menunjukkan kemampuan model yang moderat dalam mendeteksi area pembuluh darah yang hampir sesuai dengan ground truth. Sementara itu, nilai IoU sebesar 0.413 mengindikasikan adanya tantangan dalam segmentasi, terutama karena tingginya jumlah false negative pada pembuluh darah besar, sebagaimana terlihat dalam visualisasi hasil berikut.
 
 
 \begin{figure}[H]
@@ -249,18 +248,9 @@
 	
 \end{figure}
 
-\noindent Gambar \ref{fig:sample_hasil} diatas menyajikan hasil segmentasi pada sample data uji. Untuk membandingkan hasil kita bisa fokus pada panel (d). Area hijau pada panel (d) menunjukkan false negative dimana area yang merupakan pembuluh darah namun tidak diprediksi oleh model. Kemudian area kuning menunjukkan true positive yang merupakan pembuluh darah dan terprediksi oleh model. Sedangkan warna merah mengindikasikan false positive yang merupakan area yang bukan pembuluh darah namun diprediksi model sebagai pembuluh darah.
+\noindent Gambar \ref{fig:sample_hasil} menunjukkan hasil segmentasi dari model Attention U-Net dibandingkan dengan ground truth. Pada panel (d), area hijau yang signifikan (false negative) terlihat pada pembuluh darah besar, menunjukkan bahwa model sering gagal mendeteksi struktur ini. Sebaliknya, area kuning (true positive) mendominasi pada pembuluh darah kecil, mencerminkan kekuatan model dalam mendeteksi struktur kecil dan terdistribusi secara lokal. Hal ini konsisten dengan nilai precision yang tinggi, tetapi recall yang lebih rendah.
 
-%\noindent Pada baris pertama, model berhasil memprediksi area yang merupakan pembuluh darah. Meskipun demikian, area yang terprediksi tidak mencakup keseluruhan pembuluh darah area yang seharusnya termasuk pembuluh darah namun masih belum terprediksi oleh model sebagai pembuluh darah. kemudian juga ada sedikit false positive yang bukan pembuluh darah namun diprediksi model sebagai pembulluh darah.
-
-%\noindent Pada baris kedua model berhasil memprediksi sebagian besar pembuluh darah kecil dengan presisi tinggi seperti yang dilihat bewarna kuning pada panel (d). model tampaknya bekerja dengan baik pada pembuluh darah yang berukuran kecil. Namun, terlihat beberapa false positive area merah pada panel (d) di area pinggiran dan juga ada sedikit false negative.
-
-%\noindent pada baris ketiga model tidak bisa benar-benar menangkap bentuk dari pembuluh darah yang diindikasikan oleh warna kuning pada panel (d). Selain itu juga terdapat sedikit false positive pada prediksi model.
-
-\noindent Secara keseluruhan model attention U-net menunjukkan kinerja baik dalam mendeteksi pembuluh darah yang berbentuk bercak-bercak kecil. seperti yang terlihat pada sample pertama sampai ketiga. Tantangan utama dari model ini adalah model tidak mampu menangkap bentuk dari pembuluh darah yang besar yang melibatkan beberapa false negative pada sampel pertama dan ketiga.
-
-
-\noindent Hasil visualisasi ini menunjukkan bahwa model Attention U-Net memiliki potensi besar dalam mendeteksi mikrovaskular pada WSI jaringan ginjal manusia. Model menunjukkan kekuatan dalam mendeteksi pembuluh darah kecil dengan tingkat recall yang tinggi, seperti terlihat pada panel kedua. Namun, tantangan utama terletak pada segmentasi pembuluh darah besar, yang menghasilkan beberapa false negative seperti pada sampel pertama dan ketiga.
+\noindent Hasil evaluasi ini menunjukkan bahwa kekuatan utama model Attention U-Net terletak pada kemampuannya mendeteksi pembuluh darah kecil, yang kemungkinan disebabkan oleh mekanisme perhatian (attention mechanism) yang membantu fokus pada detail halus. Namun, tantangan terbesar model adalah mendeteksi pembuluh darah besar, yang mungkin disebabkan oleh kurangnya pembuluh darah berukuran besar berdasarkan temuan pada tahap eksplorasi data dimana data yang konsisten berukuran besar hanya ada pada dataset pertama source wsi pertama.
 
 
 

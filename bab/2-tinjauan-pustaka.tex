@@ -316,6 +316,18 @@ keterangan:
 \subsection{Jumlah epoch}
 \noindent Jumlah epoch mengacu pada berapa kali seluruh dataset dilalui selama pelatihan. Terlalu sedikit epoch dapat menyebabkan model underfitting karena tidak cukup belajar dari data, sedangkan terlalu banyak epoch dapat menyebabkan overfitting, di mana model belajar terlalu detail pada data pelatihan dan kehilangan kemampuan untuk menggeneralisasi pada data yang belum pernah dilihat \cite{goodfellow_deep_2016}.
 
+\section{Plateau dalam Pelatihan Deep Learning}
+
+\noindent \textit{Plateau} merupakan keadaan dimana model mengalami stagnasi selama proses pelatihan. Nilai loss (baik training maupun validation loss) tidak menunjukkan perubahan yang signifikan meskipun pelatihan terus berlanjut  dalam beberapa epoch \cite{ainsworth_plateau_2020}.  Keadaan ini dapat disebabkan oleh beberapa faktor, antara lain: 
+
+\begin{itemize}
+	\item \textit{Learning  rate} yang terlalu besar atau kecil.
+	\item Kompleksitas data yang tinggi, membuat model sulit keluar dari minimum lokal.
+	\item Kapasitas model mungkin tidak cukup untuk menangkap pola lebih kompleks dalam data.
+\end{itemize}
+
+\noindent Salah satu praktik yang bisa digunakan untuk mengatasi plateau ini adalah penyesuaian learning rate menggunakan \textit{ReduceLROnPlateau callback} dari \textit{library} \textit{Keras} yang akan menyesuaikan laju pembelajaran ketika validation loss berhenti membaik untuk jangka waktu tertentu. Callback ini bertujuan untuk mendorong model keluar dari kondisi stagnasi melalui penyesuaian learning rate.
+
 \section{Metriks Evaluasi}
 \noindent Kinerja tugas segmentasi dari jaringan dievaluasi secara kuantitatif menggunakan \textit{precision}, \textit{recall} ,\textit{intersection over union }(IoU) dan \textit{dice similarity coefficient }(DSC) \cite{jiang_iu-net_2023}. IoU dan DSC digunakan untuk mengevaluasi kemiripan antara hasil segmentasi dan ground truth, dimana semakin mendekati IoU dan DSC dengan 1 maka semakin dekat prediksi dengan ground truth. %Penjelasan dari setiap metriks yang digunakan adalah sebagai berikut ini:
 
