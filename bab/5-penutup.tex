@@ -1,9 +1,8 @@
 \chapter{KESIMPULAN DAN SARAN}
 
 \section{Kesimpulan}
-\noindent Penelitian ini bertujuan untuk mengevaluasi kinerja model Fully Convolutional Network (FCN), khususnya Attention U-net, untuk tugas segmentasi mikrovaskular pada Whole Slide Images (WSI) jaringan ginjal manusia. Selain itu penelitian ini juga membahas pengaruh penambahan attention gate dalam meningkatkan peforma segmentasi.
 
-\noindent Dalam pengembangannya model Attention U-net mencapai peforma tertinggi dengan konfigurasi terbaiknya menggunakan optimizer Adam dengan batch size 4. Selain itu dengan penggunaan teknik oversampling dalam pengembangannya, model attention U-net menghasilkan peningkatan yang signifikan pada DSC (dari 0.560 menjadi 0.624) dan IoU (dari 0.413 menjadi 0.481).  Dibandingkan dengan U-net standar, mekanisme attention terbukti mampu meningkatkan kinerja U-net berdasarkan hasil evaluasi pada metriks utama.
+\noindent Penelitian ini bertujuan untuk mengevaluasi kinerja model \textit{Fully Convolutional Network} (FCN), khususnya Attention U-Net, untuk tugas segmentasi mikrovaskular pada \textit{Whole Slide Images} (WSI) jaringan ginjal manusia, serta untuk menganalisis pengaruh penambahan mekanisme attention gate dalam meningkatkan performa segmentasi. Dalam pengembangannya, model Attention U-Net mencapai performa tertinggi dengan konfigurasi terbaiknya menggunakan optimizer Adam dan batch size 4. Dibandingkan dengan U-Net standar, mekanisme attention terbukti mampu meningkatkan kinerja berdasarkan hasil evaluasi pada metrik utama.
 
 \noindent Hasil ini menunjukkan efektivitas Attention U-Net dalam tugas segmentasi mikrovaskular ginjal, terutama pada pembuluh kecil yang disebabkan oleh mekanisme attention yang membantu model memprioritaskan area yang relevan pada citra input, sehingga mengurangi gangguan dari area latar belakang yang kurang signifikan. Namun, tantangan terbesar model adalah mendeteksi struktur pembuluh yang lebih kompleks dan berukuran besar. Hal ini disebabkan oelh kurangnya dataset yang memiliki pembuluh darah berrukuran besar.
 

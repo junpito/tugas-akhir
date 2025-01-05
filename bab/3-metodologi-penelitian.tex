@@ -85,13 +85,20 @@ keterangan:
 
 \subsection{Augmentasi}
 
-\noindent Proses ini merupakan teknik untuk megenerasi  data yang mirip dengan data original namun berbeda pada pandangan model. Pada penelitian ini akan dilakukan augmentasi berupa transformasi geometri secara acak seperti: rotation (rotasi), scaling(skala) dan flipping(membalikkan).
+\noindent Proses ini merupakan teknik untuk megenerasi  data yang mirip dengan data original namun berbeda pada pandangan model. Pada penelitian ini, augmentasi yang diterapkan meliputi beberapa transformasi geometri acak, yaitu:
+\begin{itemize}
+	\item Flipping: Membalik gambar secara horizontal atau vertikal.
+	\item Rotation: Memutar gambar secara acak dengan sudut 0°, 90°, 180°, atau 270°.
+	\item Zooming: Memotong bagian gambar secara acak hingga 20\% dari area awal, lalu memperbesar kembali ke ukuran asli (512x512 piksel).
+\end{itemize}
 
-\subsection{Konversi Grayscale}
-\noindent Konversi grayscale adalah proses mengubah gambar berwarna (RGB) menjadi gambar hitam-putih (grayscale). Ini melibatkan penghilangan informasi warna dan hanya mempertahankan intensitas cahaya, yang mengubah setiap piksel gambar menjadi nilai intensitas tunggal, sehinggaa model bisa fokus pada struktur tanpa gangguan fitur warna. Konversi graysclale pada gambar menggunakan rumus berikut:
-    \begin{equation}
-	\text{Gray} = 0.2989 \times \text{Red} + 0.5870 \times \text{Green} + 0.1140 \times \text{Blue}
-\end{equation}
+\noindent Semua augmentasi dilakukan secara acak selama proses pelatihan untuk memastikan model mampu mengenali pola penting meskipun terdapat variasi dalam data.
+
+%\subsection{Konversi Grayscale}
+%\noindent Konversi grayscale adalah proses mengubah gambar berwarna (RGB) menjadi gambar hitam-putih (grayscale). Ini melibatkan penghilangan informasi warna dan hanya mempertahankan intensitas cahaya, yang mengubah setiap piksel gambar menjadi nilai intensitas tunggal, sehinggaa model bisa fokus pada struktur tanpa gangguan fitur warna. Konversi graysclale pada gambar menggunakan rumus berikut:
+    %\begin{equation}
+	%\text{Gray} = 0.2989 \times \text{Red} + 0.5870 \times \text{Green} + 0.1140 \times \text{Blue}
+%\end{equation}
 
 
 

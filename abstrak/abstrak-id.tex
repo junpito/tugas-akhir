@@ -1,8 +1,11 @@
 \begin{abstractind}
 \justifying
 
-\textit{Vascular Coordinate Common Framework} (VCCF) memungkinkan pemetaan setiap sel di ginjal, namun masih terdapat keterbatasan dalam pengetahuan tentang mikrovaskular. Segmentasi mikrovaskular pada citra \textit{Whole Slide Image} (WSI) jaringan ginjal manusia merupakan tugas penting yang memiliki berbagai manfaat dalam studi tentang ginjal, termasuk diagnosis dan pengobatan penyakit. Penelitian ini mengusulkan metode \textit{Fully Convolutional Network} dengan arsitektur Attention U-net yang diharapkan dapat meningkatkan kinerja U-net dasar dalam melakukan segmentasi mikrovaskular. Metode ini akan dievaluasi menggunakan metrik \textit{Interception Over Union} (IoU) dan \textit{Dice Similarity Coefficient} (DSC) untuk mengukur akurasi dan konsistensinya.
-%%pada abstrak bahasa Inggris, separator desimal koma
+\noindent Struktur mikrovaskular dalam ginjal manusia memainkan peran penting dalam fungsi tubuh, namun segmentasi secara manual memerlukan waktu yang lama dan keahlian khusus dalam histologi. Kompleksitas mikrovaskular menghadirkan tantangan signifikan dalam pengembangan metode segmentasi otomatis. Penelitian ini mengevaluasi model Attention U-Net untuk segmentasi mikrovaskular pada Whole Slide Image (WSI) jaringan ginjal manusia dengan penambahan modul attention gate pada arsitektur U-Net guna meningkatkan akurasi.
+
+\noindent Dataset yang digunakan berasal dari Human BioMolecular Atlas Program (HuBMAP) dan telah dianotasi oleh ahli histologi. Model dilatih menggunakan optimizer Adam dengan batch size 4 untuk mencapai performa terbaik, kemudian dievaluasi menggunakan metrik Dice Similarity Coefficient (DSC), Intersection over Union (IoU), precision, dan recall.
+
+\noindent Hasil penelitian menunjukkan bahwa Attention U-Net unggul dibandingkan U-Net standar pada seluruh metriks utama. Mekanisme attention gate membantu model memfokuskan pada area relevan, sehingga meningkatkan kemampuan model dalam deteksi pembuluh darah kecil.us on relevant areas, thereby enhancing its capability in detecting small blood vessels.
 
 \bigskip
 \noindent
