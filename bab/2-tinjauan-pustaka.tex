@@ -313,8 +313,8 @@ keterangan:
 \subsection{Batch size }
 \noindent Batch size atau mini batch merujuk kepada banyak sample data yang digunakan dalam setiap iterasi \cite{devarakonda_adabatch_2017}.  Batch size yang besar cenderung menghasilkan estimasi gradien yang lebih stabil tetapi membutuhkan lebih banyak memori, sementara batch size yang lebih kecil membutuhkan lebih sedikit memori namun dapat menghasilkan gradien yang lebih bising \cite{goodfellow_deep_2016}. Untuk efisiensi penggunaan perangkat keras, pemilihan ukuran batch size biasanya menggunakan pangkat 2(contoh: 64, 128, 256, ... )\cite{bishop_deep_2024}.
 
-\subsection{Jumlah epoch}
-\noindent Jumlah epoch mengacu pada berapa kali seluruh dataset dilalui selama pelatihan. Terlalu sedikit epoch dapat menyebabkan model underfitting karena tidak cukup belajar dari data, sedangkan terlalu banyak epoch dapat menyebabkan overfitting, di mana model belajar terlalu detail pada data pelatihan dan kehilangan kemampuan untuk menggeneralisasi pada data yang belum pernah dilihat \cite{goodfellow_deep_2016}.
+%\subsection{Jumlah epoch}
+%\noindent Jumlah epoch mengacu pada berapa kali seluruh dataset dilalui selama pelatihan. Terlalu sedikit epoch dapat menyebabkan model underfitting karena tidak cukup belajar dari data, sedangkan terlalu banyak epoch dapat menyebabkan overfitting, di mana model belajar terlalu detail pada data pelatihan dan kehilangan kemampuan untuk menggeneralisasi pada data yang belum pernah dilihat \cite{goodfellow_deep_2016}.
 
 \section{Plateau dalam Pelatihan Deep Learning}
 
@@ -329,35 +329,35 @@ keterangan:
 \noindent Salah satu praktik yang bisa digunakan untuk mengatasi plateau ini adalah penyesuaian learning rate menggunakan \textit{ReduceLROnPlateau callback} dari \textit{library} \textit{Keras} yang akan menyesuaikan laju pembelajaran ketika validation loss berhenti membaik untuk jangka waktu tertentu. Callback ini bertujuan untuk mendorong model keluar dari kondisi stagnasi melalui penyesuaian learning rate.
 
 \section{Metriks Evaluasi}
-\noindent Kinerja tugas segmentasi dari jaringan dievaluasi secara kuantitatif menggunakan \textit{precision}, \textit{recall} ,\textit{intersection over union }(IoU) dan \textit{dice similarity coefficient }(DSC) \cite{jiang_iu-net_2023}. IoU dan DSC digunakan untuk mengevaluasi kemiripan antara hasil segmentasi dan ground truth, dimana semakin mendekati IoU dan DSC dengan 1 maka semakin dekat prediksi dengan ground truth. %Penjelasan dari setiap metriks yang digunakan adalah sebagai berikut ini:
+\noindent Kinerja tugas segmentasi dari jaringan dievaluasi secara kuantitatif menggunakan \textit{intersection over union }(IoU) dan \textit{dice similarity coefficient }(DSC) \cite{jiang_iu-net_2023}. IoU dan DSC digunakan untuk mengevaluasi kemiripan antara hasil segmentasi dan ground truth, dimana semakin mendekati IoU dan DSC dengan 1 maka semakin dekat prediksi dengan ground truth. %Penjelasan dari setiap metriks yang digunakan adalah sebagai berikut ini:
 
-\subsection{Precission:}
-\noindent Merupakan metriks yang digunakan dalam pengukuran proporsi prediksi yang benar (true positive) dari semua prediksi positif yang dihasilkan model \cite{jiang_iu-net_2023}. Dalam tugas segmentasi, \textit{precision} mengukur seberapa banyak piksel yang diprediksi merupakan bagian dari objek yang benar termasuk kedalam objek tersebut. secara matematis \textit{precision} dapat dirumuskan sebagai berikut:
+%\subsection{Precission:}
+%\noindent Merupakan metriks yang digunakan dalam pengukuran proporsi prediksi yang benar (true positive) dari semua prediksi positif yang dihasilkan model \cite{jiang_iu-net_2023}. Dalam tugas segmentasi, \textit{precision} mengukur seberapa banyak piksel yang diprediksi merupakan bagian dari objek yang benar termasuk kedalam objek tersebut. secara matematis \textit{precision} dapat dirumuskan sebagai berikut:
 
-\begin{equation}
-	\text{Precision} = \frac{TP}{TP + FP}
-\end{equation}
+%\begin{equation}
+%	\text{Precision} = \frac{TP}{TP + FP}
+%\end{equation}
 
-\noindent
-keterangan:
-\begin{itemize}
-	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
-	\item $FP$ (false positive): jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek
-\end{itemize}
+%\noindent
+%keterangan:
+%\begin{itemize}
+%	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
+%	\item $FP$ (false positive): jumlah piksel yang bukan bagian dari objek namun diprediksi sebagai bagian dari objek
+%\end{itemize}
 
-\subsection{Recall:}
-\noindent Merupakan metriks yang digunakan dalam pengukuran proporsi prediksi benar dari semua prediksi positif yang dihasilkan model \cite{jiang_iu-net_2023}.  Dalam dalam tugas segmentasi, \textit{recall} mengukur seberapa banyak piksel yang prediksi sebagai bagian dari objek benar-benar bagian dari objek tersebut. secara matematis dapat dirumuskan sebagai berikut ini:
+%\subsection{Recall:}
+%\noindent Merupakan metriks yang digunakan dalam pengukuran proporsi prediksi benar dari semua prediksi positif yang dihasilkan model \cite{jiang_iu-net_2023}.  Dalam dalam tugas segmentasi, \textit{recall} mengukur seberapa banyak piksel yang prediksi sebagai bagian dari objek benar-benar bagian dari objek tersebut. secara matematis dapat dirumuskan sebagai berikut ini:
 
-\begin{equation}
-	\text{Recall} = \frac{TP}{TP + FN}
-\end{equation}
+%\begin{equation}
+%	\text{Recall} = \frac{TP}{TP + FN}
+%\end{equation}
 
-\noindent
-keterangan:
-\begin{itemize}
-	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
-	\item $FN$ (false negative): jumlah piksel yang merupakan bagian dari objek namun diprediksi sebagai bukan bagian dari objek
-\end{itemize}
+%\noindent
+%keterangan:
+%\begin{itemize}
+%	\item $TP$ (true positive): jumlah piksel yang benar-benar bagian dari objek dan diprediksi dengan benar sebagai bagian dari objek
+%	\item $FN$ (false negative): jumlah piksel yang merupakan bagian dari objek namun diprediksi sebagai bukan bagian dari objek
+%\end{itemize}
 
 \subsection{IoU:}
 \noindent Merupakan metriks yang digunakan untuk mengukur sejauh mana segmen yang diprediksi oleh model tumpang tindih dengan segmen \textit{ground truth}\cite{jiang_iu-net_2023}. Secara matematis IoU dapat dirumuskan sebagai berikut:

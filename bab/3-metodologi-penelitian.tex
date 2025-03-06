@@ -64,7 +64,7 @@
 
 \subsection{Normalisasi}
 
-\noindent Dalam tahap ini, intensitas piksel dari gambar yang biasanya dalam rentang 0 hingga 225 akan di ubah menjadi rentang lebih kecil seperti 0 dan 1. Proses ini bisa mempercepat proses konvergensi model dan meningkatkan akurasi model. Berikut adalah formula untuk normalisasi intensitas piksel dalam gambar:
+\noindent Dalam tahap ini, intensitas piksel dari gambar yang biasanya dalam rentang 0 hingga 255 akan di ubah menjadi rentang lebih kecil seperti 0 dan 1. Proses ini bisa mempercepat proses konvergensi model dan meningkatkan akurasi model. Berikut adalah formula untuk normalisasi intensitas piksel dalam gambar:
 
 \begin{equation}
 	x' = \frac{x - \min}{\max - \min}
@@ -87,9 +87,9 @@ keterangan:
 
 \noindent Proses ini merupakan teknik untuk megenerasi  data yang mirip dengan data original namun berbeda pada pandangan model. Pada penelitian ini, augmentasi yang diterapkan meliputi beberapa transformasi geometri acak, yaitu:
 \begin{itemize}
-	\item Flipping: Membalik gambar secara horizontal atau vertikal.
-	\item Rotation: Memutar gambar secara acak dengan sudut 0°, 90°, 180°, atau 270°.
-	\item Zooming: Memotong bagian gambar secara acak hingga 20\% dari area awal, lalu memperbesar kembali ke ukuran asli (512x512 piksel).
+	\item Flipping: Membalik gambar secara horizontal atau vertikal \cite{goceri_medical_2023,hu_multi-scale_2023,oktay_attention_2018}.
+	\item Rotation: Memutar gambar secara acak dengan sudut 0°, 90°, 180°, atau 270° \cite{goceri_medical_2023,ronneberger_u-net_2015}.
+	\item Zooming: Memotong bagian gambar secara acak hingga 20\% dari area awal, lalu memperbesar kembali ke ukuran asli (512x512 piksel) \cite{goceri_medical_2023,oktay_attention_2018}.
 \end{itemize}
 
 \noindent Semua augmentasi dilakukan secara acak selama proses pelatihan untuk memastikan model mampu mengenali pola penting meskipun terdapat variasi dalam data.
@@ -135,9 +135,9 @@ Berikut adalah tabel konfigurasi hyperparameter yang digunakan dalam pelatihan:
 \noindent Tahap evaluasi dilakukan untuk menilai kinerja model segmentasi dalam mendeteksi struktur mikrovaskular ginjal. Evaluasi ini dilakukan dengan menggunakan beberapa metrik yang sering digunakan dalam tugas segmentasi, yaitu \textit{precision}, \textit{recall}, \textit{intersection over union} (IoU), dan \textit{dice similarity coefficient} (DSC) \cite{jiang_iu-net_2023}. Metrik-metrik ini dipilih karena mampu memberikan gambaran kuantitatif mengenai akurasi dan kualitas hasil segmentasi yang dihasilkan oleh model terhadap \textit{ground truth}.
 
 \begin{itemize}
-	\item \textbf{Precision}: Precision mengukur proporsi area yang terdeteksi sebagai mikrovaskular yang benar-benar termasuk dalam kategori tersebut. Precision yang tinggi menunjukkan bahwa model mampu mengurangi \textit{false positives} dalam prediksi segmentasi.
+	%\item \textbf{Precision}: Precision mengukur proporsi area yang terdeteksi sebagai mikrovaskular yang benar-benar termasuk dalam kategori tersebut. Precision yang tinggi menunjukkan bahwa model mampu mengurangi \textit{false positives} dalam prediksi segmentasi.
 	
-	\item \textbf{Recall}: Recall mengukur kemampuan model dalam mendeteksi area mikrovaskular secara menyeluruh. Nilai recall yang tinggi menunjukkan bahwa model berhasil menemukan sebagian besar area yang benar-benar termasuk dalam struktur mikrovaskular, dengan meminimalkan \textit{false negatives}.
+	%\item \textbf{Recall}: Recall mengukur kemampuan model dalam mendeteksi area mikrovaskular secara menyeluruh. Nilai recall yang tinggi menunjukkan bahwa model berhasil menemukan sebagian besar area yang benar-benar termasuk dalam struktur mikrovaskular, dengan meminimalkan \textit{false negatives}.
 	
 	\item \textbf{Intersection over Union (IoU)}: IoU mengukur tingkat tumpang tindih antara hasil segmentasi dan \textit{ground truth}. Nilai IoU yang mendekati 1 menunjukkan tingkat akurasi spasial yang tinggi, dengan segmentasi yang dihasilkan model sangat mirip dengan \textit{ground truth}.
 	
