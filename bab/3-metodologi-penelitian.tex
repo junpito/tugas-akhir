@@ -1,7 +1,7 @@
 \chapter{METODE PENELITIAN}
 \label{sec:metode-penelitian}
 
-\noindent Dalam penelitian ini akan dilakukan implementasi model Attention U-net untuk segmentasi mikrovaskular dalam WSI ginjal manusia sehat.  Penggunaan \textit{Aattention Gate} (AG) pada U-net dipilih untuk memusatkan perhatian model pada \textit{feature} yang berpengaruh dari \textit{encoder} ,sehingga bisa meningkatkan peforma model dalam tugas segmentasi mikrovaskular dalam WSI ginjal manusia sehat. Penelitian ini melibatkan beberapa tahapan mulai dari penginputan data sampai ke evaluasi model. Secara mendetail seluruh proses dari penelitian ini bisa dilihat pada flowchart berikut ini:
+\noindent Dalam penelitian ini akan dilakukan implementasi model Attention U-net untuk segmentasi mikrovaskular dalam WSI ginjal manusia sehat.  Penggunaan \textit{Aattention Gate} (AG) pada U-net dipilih untuk memusatkan perhatian model pada \textit{feature} yang berpengaruh dari \textit{encoder} ,sehingga bisa meningkatkan peforma model dalam tugas segmentasi mikrovaskular dalam WSI ginjal manusia sehat. Penelitian ini melibatkan beberapa tahapan mulai dari penginputan data sampai ke evaluasi model. Secara mendetail, seluruh proses penelitian ini dapat dilihat pada flowchart berikut:
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.6]{gambar/flow-chart.png}
@@ -58,9 +58,9 @@
 \noindent \textit{Notebook} yang menggunakan \textit{Central Processing Unit }(CPU) dan \textit{Graphics Processing Unit} (GPU) memiliki waktu eksekusi selama 12 jam, sedangkan notebook yang menggunakan \textit{Tensor Processing Unit} (TPU) memiliki waktu eksekusi selama 9 jam. Tersedia 20 \textit{Gigabytes} ruang penyimpanan otomatis direktori '/kaggle/working' dan ruang penyimpanan \textit{scratchpad} tambahan yang tidak akan disimpan diluar sesi saat ini.
 
 
-\section{Preproccessing}
+\section{Preprocessing}
 
-\noindent \textit{Preproccessing} merupakan langkah penting dalam mempersiapkan dataset agar bisa gunakan dalam pelatihan dan evaluasi model. Langkah-langkah yang biasanya dilakukan dalam \textit{preproccessing} citra biomedis untuk tugas segmentasi adalah: normalisasi, augmentasi, dan pembagian dataset menjadi data latih dan validasi.
+\noindent \textit{Preprocessing} merupakan langkah penting dalam mempersiapkan dataset agar bisa digunakan dalam pelatihan dan evaluasi model. Langkah-langkah yang biasanya dilakukan dalam \textit{preprocessing} citra biomedis untuk tugas segmentasi adalah: normalisasi, augmentasi, dan pembagian dataset menjadi data latih dan validasi.
 
 \subsection{Normalisasi}
 
@@ -85,7 +85,7 @@ keterangan:
 
 \subsection{Augmentasi}
 
-\noindent Proses ini merupakan teknik untuk megenerasi  data yang mirip dengan data original namun berbeda pada pandangan model. Pada penelitian ini, augmentasi yang diterapkan meliputi beberapa transformasi geometri acak, yaitu:
+\noindent Proses ini merupakan teknik untuk menghasilkan data yang mirip dengan data original namun berbeda pada pandangan model. Pada penelitian ini, augmentasi yang diterapkan meliputi beberapa transformasi geometri acak, yaitu:
 \begin{itemize}
 	\item Flipping: Membalik gambar secara horizontal atau vertikal \cite{goceri_medical_2023,hu_multi-scale_2023,oktay_attention_2018}.
 	\item Rotation: Memutar gambar secara acak dengan sudut 0°, 90°, 180°, atau 270° \cite{goceri_medical_2023,ronneberger_u-net_2015}.
@@ -124,7 +124,7 @@ Berikut adalah tabel konfigurasi hyperparameter yang digunakan dalam pelatihan:
 		Arsitektur Model        & \multicolumn{4}{l}{Attention U-net, U-net}            \\
 		Optimizer               & \multicolumn{4}{l}{Adam, SGD}                         \\
 		Batch size              & \multicolumn{4}{l}{4, 8, 16}                          \\
-		Epotch                  & \multicolumn{4}{l}{Ditentukan oleh \textit{early stopping}}    \\
+		Epoch                  & \multicolumn{4}{l}{Ditentukan oleh \textit{early stopping}}    \\
 		Learning rate           & \multicolumn{4}{l}{Ditentukan oleh \textit{ReduceOnPlateau}} \\ \hline
 	\end{tabular}
 \end{table}
