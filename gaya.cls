@@ -499,7 +499,7 @@ maupun yang dirujuk telah saya nyatakan benar.}\\
 \begin{tabular}{l c l}
 \textbf{Nama} & : & \textbf{\@fullname} \\
 \textbf{NIM} & : & \textbf{\@idnum} \\
-\textbf{Tanda tangan} & : &  \\
+\textbf{Tanda tangan} & : &  \\[1cm]
 \textbf{Tanggal} & : & \textbf{\@approvaldate}
 \end{tabular}\\
 
@@ -534,17 +534,17 @@ beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklu
 \noindent Demikian pernyataan ini saya buat dengan sebenarnya.
 \end{justify}
 
-\begin{flushright}
+%\begin{flushright}
 \begin{tabular}{l c l}
-Dibuat di & : & \@city\\
-Pada tanggal & : & \@approvaldate\\
-& &\\
+	Dibuat di & : & \@city\\
+	Pada tanggal & : & \@approvaldate\\
+	& &\\
 \end{tabular}
 \\
+Yang menyatakan\\
 \vspace{2cm}
-Yang menyatakan (\@fullname)
-\vspace{5cm}
-\end{flushright}
+\@fullname
+%\end{flushright}
 \end{onehalfspacing}
 
 }
