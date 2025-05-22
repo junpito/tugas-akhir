@@ -32,7 +32,7 @@ Penelitian ini membahas penerapan arsitektur Attention U-Net untuk melakukan seg
    pdflatex main.tex
 
 ## Hasil pdf
-Berikut adalah versi full skripsi ini: - [Junpito Salim, 120450086](10.5281/zenodo.15487180)
+Berikut adalah versi full skripsi ini: - [Junpito Salim, 120450086](https://zenodo.org/records/15487180?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImY5NjE1ODQ4LWZkZmQtNDc4My1iZjk1LTlmZGEzYTY0MTgwZiIsImRhdGEiOnt9LCJyYW5kb20iOiJhZjA0YTMwZGU4YzhmOGEwOTU1YThiYTIyZTIyMDA2ZCJ9.-wjVCnYH_ljwnXciOvTnW1rwEjSDrSSPH76eZTvfbi_lWaHusDgcm3Swlwpm8-TjfGXQgaDznf-E-_D2zcdXiQ)
 
 ## Ucapan Terima Kasih dan Referensi
 
