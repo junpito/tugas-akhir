@@ -136,7 +136,7 @@ Secara keseluruhan, konfigurasi optimizer Adam dengan batch size 4 menunjukkan p
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
 
-\subsection{Mengapa Batch Size Lebih Besar Tidak Selalu Meningkatkan Kinerja Attention U‑Net pada Segmentasi Mikrovaskular Ginjal Manusia}
+\subsection{Mengapa Batch Size Lebih Besar Tidak Selalu Meningkatkan Kinerja Attention U‑Net pada Segmentasi Mikrovaskular Ginjal Manusia?}
 
 Pada Tabel \ref{tab:training-results} hasil eksperimen menunjukkan bahwa peningkatan batch size tidak selalu meningkatkan performa model. Hal ini berlawanan dengan ekspektasi umum, di mana peningkatan batch size diasumsikan akan meningkatkan performa model. Pada konfigurasi SGD, peningkatan batch size dari 4 ke 16 menyebabkan penurunan DSC sebesar 49{,}7\%, sementara pada Adam, fluktuasi performa relatif stabil (±1\%). Anomali ini dapat dijelaskan melalui interaksi antara \textit{batch size}, \textit{optimizer}, \textit{learning rate}, dan prinsip \textit{diminishing returns}.
 

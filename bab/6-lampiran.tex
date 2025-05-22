@@ -7,7 +7,7 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.4]{gambar/lampiran/stride.png}
+	\includegraphics[scale=.3]{gambar/lampiran/stride.png}
 \end{figure}
 
 \noindent Selanjutnya contoh perhitungan dari operasi konvolusi menggunakan data yang sederhana:
@@ -98,7 +98,7 @@ Kemudian hasil perkalian yang ada pada setiap area output akan dijumlahkan.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.2]{gambar/lampiran/feed-fwrd.png}
+	\includegraphics[scale=.15]{gambar/lampiran/feed-fwrd.png}
 \end{figure}
 
 \noindent Gambar diatas merupakan contoh sebuah layer konvolusi. Setelah dihasilkan peta fitur, jaringan akan menambahkan bias pada peta fitur tersebut untuk mengatur nilai output dari neuron. Kemudian, fungsi aktivasi ReLU (Rectified Linear Unit) diterapkan pada setiap elemen feature map. ReLU mengubah semua nilai negatif menjadi nol, dan mempertahankan nilai positif apa adanya. Berikut adalah contoh dari penerapan ReLU pada peta fitur.
@@ -158,15 +158,15 @@ ReLU mengubah setiap nilai negatif menjadi 0 dan mempertahankan nilai positif ap
 
 Pada sub-lampiran ini di tampilkan beberapa sampel citra dari setiap sumber WSI untuk melihat bagaimana karakteristik citra di setiap WSI.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 	%\begin{subfigure}[b]{1\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{gambar/bab4/ds1s1_0.png}
-	\includegraphics[width=\textwidth]{gambar/bab4/ds1s1_1.png}
-	\includegraphics[width=\textwidth]{gambar/bab4/ds1s1_2.png}
-	\includegraphics[width=\textwidth]{gambar/bab4/ds1s2_0.png}
-	\includegraphics[width=\textwidth]{gambar/bab4/ds1s2_1.png}
-	\includegraphics[width=\textwidth]{gambar/bab4/ds1s2_2.png}
+	\includegraphics[width=\textwidth]{gambar/bab4/ds1s1_0.png} \\
+	\includegraphics[width=\textwidth]{gambar/bab4/ds1s1_1.png} \\
+	\includegraphics[width=\textwidth]{gambar/bab4/ds1s1_2.png} \\
+	\includegraphics[width=\textwidth]{gambar/bab4/ds1s2_0.png} \\
+	\includegraphics[width=\textwidth]{gambar/bab4/ds1s2_1.png} \\
+	\includegraphics[width=\textwidth]{gambar/bab4/ds1s2_2.png} \\
 	%\caption{Sample citra pada dataset 1}
 	\label{fig:ds1_image}
 	%\end{subfigure}	

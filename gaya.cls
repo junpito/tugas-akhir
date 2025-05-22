@@ -7,7 +7,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{gaya}
-\LoadClass[a4paper,12pt]{report}
+\LoadClass[11pt,twoside]{report}
 \RequirePackage[english,bahasa]{babel}
 \RequirePackage{indentfirst}
 \RequirePackage{setspace}
@@ -16,9 +16,16 @@
 \RequirePackage{graphicx,latexsym}
 \RequirePackage{pdflscape}
 \RequirePackage{longtable}
-\setlength{\paperwidth}{210mm}
-\setlength{\paperheight}{297mm}
-\usepackage[a4paper, left = 4cm, right = 3cm, top = 3cm, bottom = 3cm, footskip = 1cm]{geometry}
+\setlength{\paperwidth}{15.5cm}
+\setlength{\paperheight}{23cm}
+\usepackage[
+papersize={15.5cm,23cm}, 
+left=2.5cm, 
+right=2cm, 
+top=2cm, 
+bottom=2cm, 
+footskip=1cm
+]{geometry}
 \usepackage{verbatim,enumerate}
 \usepackage[hyphens]{url}
 \usepackage{fancyvrb}
@@ -47,11 +54,42 @@
 \usepackage{array}
 \usepackage{tabularx,booktabs}
 \usepackage{blindtext}
+\usepackage{titlesec}
+
+%===============================================
+% Pengaturan Format dan Jarak BAB, Subbab, dll.
+%===============================================
+
+% Judul BAB
+\titleformat{\chapter}[display]
+{\centering\bfseries\fontsize{14}{14}\selectfont}
+{BAB \ \thechapter} % Format label (contoh: BAB III)
+{1em} % Jarak antara label dan judul
+{}
+\titlespacing{\chapter}{0pt}{36pt}{12pt} % Jarak: kiri, sebelum, setelah
+
+% Subbab (section)
+\titleformat{\section}
+{\normalfont\bfseries\fontsize{12}{12}\selectfont}
+{\thesection} % Format label (contoh: 3.1)
+{1em} % Jarak antara label dan judul
+{}
+\titlespacing{\section}{0pt}{24pt}{12pt} % Jarak: kiri, sebelum, setelah
+
+% Sub-subbab (subsection)
+\titleformat{\subsection}
+{\normalfont\bfseries\fontsize{11}{10}\selectfont}
+{\thesubsection} % Format label (contoh: 3.1.1)
+{1em}
+{}
+\titlespacing{\subsection}{0pt}{15pt}{8pt}
+
+
 
 
 \newif\if@msthesis
 \newif\if@msproposal
-\DeclareOption{skripsi}{\@msthesistrue\@msproposalfalse}
+\DeclareOption{Tugas Akhir}{\@msthesistrue\@msproposalfalse}
 \DeclareOption{proposal}{\@
 msthesisfalse\@msproposaltrue}
 
@@ -346,51 +384,51 @@ msthesisfalse\@msproposaltrue}
 %Define sampul in Indonesian
 %------------------------------------------------------------
 \def\cover{
-    \thispagestyle{empty}
-    \setcounter{page}{1}
-    \begin{center}
-        \begin{singlespace}
-            \includegraphics[width=21mm]{gambar/itera-logo.png} \\[1.5cm]
-            {\normalfont\bfseries
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\nobreak \@titleind}\\[1.5cm]
-                \MakeUppercase{\@textta}\\[16pt]
-                \vfill
-                \fontsize{13pt}{16pt}\selectfont{\@fullname}\\
-                {NIM \@idnum}\vfill
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{
-                {Program Studi \@program}\\
-                {Fakultas \@dept}\\
-                {\@university}\\
-                {\@city}\\[0.5cm]
-                {\@yearsubmit}}}
-        \end{singlespace}
-    \end{center}
+	\thispagestyle{empty}
+	\setcounter{page}{1}
+	\begin{center}
+		\begin{singlespace}
+			
+			{\normalfont\bfseries
+				\fontsize{11pt}{16pt}\selectfont\MakeUppercase{\nobreak \@titleind}\\[1.5cm]
+				\MakeUppercase{\@textta}\\[16pt]
+				\vfill
+				\fontsize{11pt}{16pt}\selectfont{\@fullname}\\
+				{\@idnum}\\[0.8cm]
+				\includegraphics[width=3cm,height=3cm]{gambar/itera-logo.png} \vfill
+				\fontsize{11pt}{16pt}\selectfont\MakeUppercase{
+					{Program Studi \@program}\\
+					{Fakultas \@dept}\\
+					{\@university}\\
+					{\@city}\\[0.5cm]
+					{\@yearsubmit}}}
+		\end{singlespace}
+	\end{center}
 }
-
 %------------------------------------------------------------
 %Define halaman judul in Indonesian
 %------------------------------------------------------------
 \def\coverdalam{
 	\addcontentsline{toc}{chapter}{HALAMAN JUDUL}
-    \thispagestyle{empty}
-    \setcounter{page}{1}
-    \begin{center}
-        \begin{singlespace}
-            \includegraphics[width=21mm]{gambar/itera-logo.png} \\[1.5cm]
-            {\normalfont\bfseries
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{\nobreak \@titleind} \\[1.5cm]
+	\thispagestyle{empty}
+	\setcounter{page}{1}
+	\begin{center}
+		\begin{singlespace}
+			{\normalfont\bfseries
+				\fontsize{11pt}{16pt}\selectfont\MakeUppercase{\nobreak \@titleind}\\[1.5cm] % Judul
                 \MakeUppercase{\@textta}\\
-                \@textoncover\vfill
-                \fontsize{13pt}{16pt}\selectfont{\@fullname}\\
-                {NIM \@idnum}\vfill
-                \fontsize{14pt}{16pt}\selectfont\MakeUppercase{
-                {Program Studi \@program}\\
-                {Fakultas \@dept}\\
-                {\@university}\\
-                {\@city}\\[0.5cm]
-                {\@yearsubmit}}}
-        \end{singlespace}
-    \end{center}
+				\@textoncover\vfill
+				\fontsize{11pt}{16pt}\selectfont{\@fullname}\\ % Nama
+				{\@idnum}\\[0.8cm] % NIM
+				\includegraphics[width=3cm,height=3cm]{gambar/itera-logo.png} \vfill % Logo di bawah NIM
+				\fontsize{11pt}{16pt}\selectfont\MakeUppercase{
+					{Program Studi \@program}\\
+					{Fakultas \@dept}\\
+					{\@university}\\
+					{\@city}\\[0.5cm]
+					{\@yearsubmit}}}
+		\end{singlespace}
+	\end{center}
 }
 
 %------------------------------------------------------------
@@ -404,24 +442,24 @@ msthesisfalse\@msproposaltrue}
     \end{onehalfspace}
     \begin{singlespace} \RaggedRight
         \@city, \@approvaldate\\
-		\begin{minipage}{0.7\textwidth} % Adjust width as needed
-		    Penulis, \\[2.5cm]
+		\begin{minipage}{0.5\textwidth} % Adjust width as needed
+		    Penulis, \\[0.5cm]
 		    \bfseries \underline{\@fullname \textcolor{white}{,}} \\
-		    \bfseries NIM \@idnum \\[1cm]
+		    \bfseries NIM \@idnum \\[0.2cm]
 		\end{minipage}
 		\hfill
 		\begin{minipage}{0.2\textwidth}
-		    \includegraphics[width=\textwidth]{gambar/sample-photo.jpg}
+		    \includegraphics[width=3cm,height=4cm]{gambar/sample-photo.jpg}
 		\end{minipage}
 	\begin{onehalfspace}
-		\\[0.5cm]
+		\\[0.2cm]
 	\end{onehalfspace}
     \end{singlespace}
 	
-    \Centering Diperiksa dan disetujui oleh,\\[0.5cm]
+    \Centering Diperiksa dan disetujui oleh,\\[0.2cm]
     \begin{singlespace}
     \begin{tabular}{c c c}
-        Pembimbing I & & Pembimbing II \\[2.5cm]
+        Pembimbing I & & Pembimbing II \\[1cm]
         \bfseries \underline{\@firstsupervisor} & \hspace{1cm} & \bfseries \underline{\@secondsupervisor} \\
         \bfseries \@nipnrkfirst \@firstnip & & \bfseries \@nipnrksecond \@secondnip \\
     \end{tabular} \\[1cm]
@@ -431,7 +469,7 @@ msthesisfalse\@msproposaltrue}
         Disahkan oleh,\\
         Koordinator Program Studi \@program \\
         Fakultas \@dept \\
-        \@university\\[2.5cm]
+        \@university\\[1cm]
         \bfseries \underline{\@headofdepartment} \\
         \bfseries \@nipnrkhead \@headnip
     \end{singlespace}
@@ -494,7 +532,7 @@ msthesisfalse\@msproposaltrue}
 \textbf{Skripsi ini adalah karya saya sendiri dan semua sumber baik yang dikutip
 maupun yang dirujuk telah saya nyatakan benar.}\\
   \end{center}
-\vspace{5cm} %need revison? but whatevr
+\vspace{4cm} %need revison? but whatevr
 
 \begin{tabular}{l c l}
 \textbf{Nama} & : & \textbf{\@fullname} \\
@@ -512,41 +550,49 @@ maupun yang dirujuk telah saya nyatakan benar.}\\
 %Publication
 %------------------------------------------------------------
 \def\publicationpage{%
-\chapter*{\publicationname}%
-\addcontentsline{toc}{chapter}{\publicationnametoc}
-\begin{onehalfspacing}
-\begin{justify}
-Sebagai civitas akademik Institut Teknologi Sumatera, saya yang bertanda tangan di bawah ini:\\
-
-\begin{tabular}{l c l}
-Nama & : & \@fullname \\
-NIM & : & \@idnum \\
-Program Studi & : & \@program \\
-Fakultas & : & \@dept \\
-Jenis karya & : & Skripsi\\
-\end{tabular}\\
-
-\noindent demi pengembangan ilmu pengetahuan, menyetujui untuk memberikan Hak Bebas Royalti Noneksklusif (\emph{Non-Exclusive Royalty Free Right}) kepada Institut Teknologi Sumatera atas karya ilmiah saya yang berjudul:
-\end{justify}
-\textbf{\@titleind} \\
-\begin{justify}
-beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklusif ini Institut Teknologi Sumatera berhak menyimpan, mengalihmedia/format-kan, mengelola dalam bentuk pangkalan data (\emph{database}), merawat, dan memublikasikan tugas akhir saya selama tetap mencantumkan nama saya sebagai penulis/pencipta dan sebagai pemilik Hak Cipta.\\[.3cm]
-\noindent Demikian pernyataan ini saya buat dengan sebenarnya.
-\end{justify}
-
-%\begin{flushright}
-\begin{tabular}{l c l}
-	Dibuat di & : & \@city\\
-	Pada tanggal & : & \@approvaldate\\
-	& &\\
-\end{tabular}
-\\
-Yang menyatakan\\
-\vspace{2cm}
-\@fullname
-%\end{flushright}
-\end{onehalfspacing}
-
+	\chapter*{\publicationname}%
+	\addcontentsline{toc}{chapter}{\publicationnametoc}
+	\begin{singlespacing} % Ganti onehalfspacing → singlespacing
+		\begin{justify}
+			\fontsize{10pt}{12pt}\selectfont % Perkecil ukuran font (11pt → 10pt)
+			
+			Sebagai civitas akademik Institut Teknologi Sumatera, saya yang bertanda tangan di bawah ini:
+			
+			% Gunakan tabularx untuk tabel yang lebih kompak
+			\begin{tabularx}{\textwidth}{@{}lX@{}} 
+				Nama          & : \@fullname \\
+				NIM           & : \@idnum \\
+				Program Studi & : \@program \\
+				Fakultas      & : \@dept \\
+				Jenis karya   & : \textbf{TUGAS AKHIR} \\ % Ganti "Skripsi" → "TUGAS AKHIR"
+			\end{tabularx}
+			
+			\vspace{0.5cm} % Kurangi spasi vertikal
+			
+			\noindent demi pengembangan ilmu pengetahuan, menyetujui untuk memberikan Hak Bebas Royalti Noneksklusif (\emph{Non-Exclusive Royalty Free Right}) kepada Institut Teknologi Sumatera atas karya ilmiah saya yang berjudul:
+			
+			\centering\textbf{\@titleind} \\ % Pusatkan judul
+			\justifying
+			
+			beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti Noneksklusif ini Institut Teknologi Sumatera berhak menyimpan, mengalihmedia/format-kan, mengelola dalam bentuk pangkalan data (\emph{database}), merawat, dan memublikasikan tugas akhir saya selama tetap mencantumkan nama saya sebagai penulis/pencipta dan sebagai pemilik Hak Cipta.
+			
+			\vspace{0.3cm} % Optimasi spasi
+			
+			\noindent Demikian pernyataan ini saya buat dengan sebenarnya.
+			
+			% Gunakan tabular dengan margin kanan untuk tanda tangan
+			\begin{flushright}
+				\begin{tabular}{l@{\hspace{1cm}}l}
+					Dibuat di & : \@city \\
+					Pada tanggal & : \@approvaldate \\[1cm]
+					Yang menyatakan & \\
+					& \makebox[5cm]{\hrulefill} \\ % Garis tanda tangan
+					& \@fullname \\
+				\end{tabular}
+			\end{flushright}
+			
+		\end{justify}
+	\end{singlespacing}
 }
 
 %------------------------------------------------------------
